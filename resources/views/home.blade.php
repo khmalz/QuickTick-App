@@ -65,11 +65,9 @@
                     <li><a class="active" href="{{ url('index.html') }}">Home</a></li>
                     <li><a href="{{ url('about.html') }}">About</a></li>
                     <li><a href="{{ url('services.html') }}">Services</a></li>
-                    <li><a href="{{ url('testimonials.html') }}">Testimonials</a></li>
                     <li><a href="{{ url('pricing.html') }}">Pricing</a></li>
                     <li><a href="{{ url('portfolio.html') }}">Portfolio</a></li>
-                    <li><a href="{{ url('blog.html') }}">Blog</a></li>
-                    <li class="dropdown"><a href="{{ url('#') }}"><span>Drop Down</span> <i
+                    {{-- <li class="dropdown"><a href="{{ url('#') }}"><span>Drop Down</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{ url('#') }}">Drop Down 1</a></li>
@@ -87,8 +85,9 @@
                             <li><a href="{{ url('#') }}">Drop Down 3</a></li>
                             <li><a href="{{ url('#') }}">Drop Down 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="{{ url('contact.html') }}">Contact</a></li>
+                    <li><a href="{{ route('login') }}">Sign in</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
