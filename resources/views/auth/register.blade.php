@@ -21,7 +21,7 @@
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('home') }}" class="h1"><b>Nas-Duk</b> Apps</a>
+                <a href="{{ route('home') }}" class="h1"><b>Travel</b> Apps</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Register a new membership</p>
