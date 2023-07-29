@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main id="main">
+    <main id="main" data-mail-success="{{ session('success') }}" data-mail-failure="{{ session('failure') }}">
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
@@ -22,11 +22,8 @@
 
         <section id="contact" class="contact">
             <div class="container">
-
                 <div class="row justify-content-center" data-aos="fade-up">
-
                     <div class="col-lg-10">
-
                         <div class="info-wrap">
                             <div class="row">
                                 <div class="col-lg-4 info">
@@ -53,7 +50,7 @@
 
                 <div class="row justify-content-center mt-5" data-aos="fade-up">
                     <div class="col-lg-10">
-                        <form action="" method="post" class="php-email-form">
+                        <form action="{{ route('contact.send') }}" method="post" class="php-email-form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
@@ -83,3 +80,33 @@
 
     </main><!-- End #main -->
 @endsection
+
+@push('scripts')
+    <script>
+        function showToast(message, background) {
+            Toastify({
+                text: message,
+                duration: 1800,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background,
+                },
+            }).showToast();
+        }
+
+        let successMessage = document.querySelector('main').dataset.mailSuccess;
+        let failureMessage = document.querySelector('main').dataset.mailFailure;
+
+        if (successMessage) {
+            showToast(successMessage, "#28a745");
+        }
+
+        if (failureMessage) {
+            showToast(failureMessage, "#dc3545");
+        }
+    </script>
+@endpush
