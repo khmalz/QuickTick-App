@@ -17,12 +17,8 @@
                 <div class="col-lg-4 col-md-6 footer-links">
                     <h4>Tentang QuickTick</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('#') }}">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('#') }}">Contact us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('#') }}">Terms of
-                                service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('#') }}">Privacy policy</a>
-                        </li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('about') }}">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('contact') }}">Contact us</a></li>
                     </ul>
                 </div>
 

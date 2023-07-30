@@ -46,13 +46,14 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div
-                        class="col-md-6 d-flex flex-column justify-content-center align-items-center mb-md-0 mb-3 text-center">
+                    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center mb-md-0 mb-3 text-center"
+                        data-aos="fade-up">
                         <h4 class="fw-bold fs-md-5">Kamu Bisa Menemukan Jaringan Kami</h4>
                         <h4 class="fw-bold">di Hampir Seluruh Kota di Indonesia</h4>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{ asset('frontend/assets/img/peta.jpg') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('frontend/assets/img/peta.jpg') }}" alt="" class="img-fluid"
+                            data-aos="fade-left">
                     </div>
                 </div>
             </div>

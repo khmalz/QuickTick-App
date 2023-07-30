@@ -1,5 +1,36 @@
 @extends('layouts.main')
 
+@push('styles')
+    <style>
+        .image-container {
+            height: clamp(200px, 25vw, 210px);
+        }
+
+        .image-text-overlay {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: font-size 0.3s ease;
+        }
+
+        .image-container img {
+            filter: brightness(66%);
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        .image-container:hover img {
+            filter: brightness(78%);
+        }
+
+        .image-container:hover .image-text-overlay {
+            font-size: 1.5rem;
+        }
+    </style>
+@endpush
+
 @section('content')
     <!-- ======= Hero Section ======= -->
     <section id="hero">
@@ -12,8 +43,9 @@
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Welcome to <span>QuickTick</span></h2>
-                            <p>tempat di mana perjalanan Anda menjadi menyenangkan dan lancar. Ayo, jadikan setiap momen
+                            <p>Tempat di mana perjalanan Anda menjadi menyenangkan dan lancar. Ayo, jadikan setiap momen
                                 berharga dengan memesan tiket bus Anda sekarang!</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Get Started</a></div>
                         </div>
                     </div>
                 </div>
@@ -25,6 +57,7 @@
                             <h2>Jelajahi Dunia dengan QuickTick!</h2>
                             <p>Temukan horison baru dan nikmati perjalanan tak terlupakan bersama QuickTick. Biarkan
                                 rasa ingin tahu Anda mengembara!</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Get Started</a></div>
                         </div>
                     </div>
                 </div>
@@ -38,6 +71,7 @@
                                 antrian panjang dan sambutlah kenyamanan. Duduk, santai, dan biarkan QuickTick
                                 mengurus
                                 rencana perjalanan Anda.</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Get Started</a></div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +93,6 @@
     <!-- End Hero -->
 
     <main id="main">
-
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
             <div class="container">
@@ -262,6 +295,74 @@
         </section> --}}
         <!-- End Portfolio Section -->
 
+        {{-- Popular Bus Destination Section --}}
+        <section class="clients">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Popular Bus Destination</h2>
+                </div>
+
+                <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" style="row-gap: 10px">
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Jakarta.jpg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Jakarta</span>
+                        </div>
+
+                    </div>
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Bali.jpg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Bali</span>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Yogyakarta.jpg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Yogyakarta</span>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Bandung.jpg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Bandung</span>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Jepara.jpg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Jepara</span>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up">
+                        <div class="image-container position-relative">
+                            <img src="{{ asset('frontend/assets/img/city/Surabaya.jpeg') }}"
+                                class="w-100 h-100 img-fluid image-text rounded" alt="">
+                            <span class="image-text-overlay position-absolute fw-bold w-100 text-center text-white">Ticket
+                                to
+                                Surabaya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{-- End Popular Bus Destination Section --}}
+
         <!-- ======= Our Partners Section ======= -->
         <section id="clients" class="clients">
             <div class="container">
@@ -272,16 +373,17 @@
 
                 <div class="row no-gutters clients-wrap clearfix justify-content-center" data-aos="fade-up">
 
-                    <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="col-lg-3 col-lg-4 col-md-6 col-12">
                         <div class="client-logo">
                             <img src="{{ asset('frontend/assets/img/clients/borlindo.png') }}" class="img-fluid"
                                 alt="">
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="col-lg-3 col-lg-4 col-md-6 col-12">
                         <div class="client-logo">
-                            <img src="{{ asset('frontend/assets/img/clients/ezri.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('frontend/assets/img/clients/ezri.png') }}" class="img-fluid"
+                                alt="">
                         </div>
                     </div>
 

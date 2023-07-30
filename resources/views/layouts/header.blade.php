@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between container">
 
             <div class="logo">
-                <h1 class="text-light"><a href="{{ url('index.html') }}">QuickTick</a></h1>
+                <h1 class="text-light"><a href="{{ route('home') }}">QuickTick</a></h1>
             </div>
 
             <nav id="navbar" class="navbar">
