@@ -22,7 +22,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('home') }}" class="h1"><b>Travel</b> Apps</a>
+                <a href="{{ route('home') }}" class="h1"><b>{{ config('app.name') }}</b> Apps</a>
             </div>
             <div class="card-body">
                 @if ($errors->any())

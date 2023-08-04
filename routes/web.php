@@ -21,7 +21,7 @@ Route::get('/contact', fn () => view('contact'))->name('contact');
 
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
-Route::get('/dashboard', fn () => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', fn () => view('admin.dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
