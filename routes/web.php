@@ -15,9 +15,22 @@ use App\Http\Controllers\SendMailController;
 |
 */
 
-Route::get('/', fn () => view('home'))->name('home');
+Route::get('/', function () {
+    $kotas = ['Jakarta', 'Surabaya', 'Bandung', 'Cilacap', 'Jepara', 'Yogyakarta', 'Bali', 'Semarang', 'Malang', 'Magelang', 'Palembang', 'Medan'];
+    return view('home', compact('kotas'));
+})->name('home');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/contact', fn () => view('contact'))->name('contact');
+Route::get('/search', function () {
+    $kotas = ['Jakarta', 'Surabaya', 'Bandung', 'Cilacap', 'Jepara', 'Yogyakarta', 'Bali', 'Semarang', 'Malang', 'Magelang', 'Palembang', 'Medan'];
+    return view('search', compact('kotas'));
+});
+Route::get('/my-tiket', fn () => view('list-tiket'))->name('mytiket');
+Route::get('/detail-tiket', fn () => view('detail-tiket'))->name('detailTiket');
+Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
+Route::get('/pesan', fn () => view('pesan'))->name('pesan');
+Route::get('/payment', fn () => view('payment'))->name('payment');
+Route::get('/success', fn () => view('success-payment'))->name('success');
 
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 

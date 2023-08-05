@@ -39,7 +39,8 @@
             <div class="carousel-inner" role="listbox">
 
                 <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url(frontend/assets/img/slide/slide-1.jpg);">
+                <div class="carousel-item active"
+                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-1.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Welcome to <span>QuickTick</span></h2>
@@ -51,7 +52,8 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(frontend/assets/img/slide/slide-2.jpg);">
+                <div class="carousel-item"
+                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-2.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Jelajahi Dunia dengan QuickTick!</h2>
@@ -63,7 +65,8 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(frontend/assets/img/slide/slide-3.jpg);">
+                <div class="carousel-item"
+                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-3.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Pengalaman Perjalanan Tanpa Batas dengan QuickTick!</h2>
@@ -93,6 +96,67 @@
     <!-- End Hero -->
 
     <main id="main">
+        <!-- ======= Cta Section ======= -->
+        <section id="cta" class="cta">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-11">
+                        <div class="rounded-4 border p-4 shadow-lg" style="background-color: rgb(246, 245, 245)">
+                            <h2 class="mb-4">Pesan Tiket</h2>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="dari" class="form-label">Dari:</label>
+                                    <select class="form-select" id="dari" required>
+                                        <option disabled selected>Pilih Tujuan Keberangkatan</option>
+                                        @foreach ($kotas as $kota)
+                                            <option value="{{ $kota }}">{{ $kota }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="ke" class="form-label">Ke:</label>
+                                    <select class="form-select" id="ke" required>
+                                        <option disabled selected>Pilih Tujuan Kedatangan</option>
+                                        @foreach ($kotas as $kotas)
+                                            <option value="{{ $kotas }}">{{ $kotas }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="berangkat" class="form-label">Berangkat:</label>
+                                    <input type="date" class="form-control" id="berangkat" required
+                                        min="{{ date('Y-m-d') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <label for="penumpang" class="form-label">Penumpang:</label>
+                                    <select class="form-select" id="penumpang" required>
+                                        <option disabled selected>Pilih Jumlah Penumpang</option>
+                                        @for ($dewasa = 1; $dewasa <= 3; $dewasa++)
+                                            @php
+                                                $totalPenumpang = $dewasa;
+                                                $label = "$dewasa Dewasa";
+                                            @endphp
+                                            <option value="{{ $totalPenumpang }}">{{ $label }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end justify-content-end mt-md-0 mt-3">
+                                    <button onclick="location.href='/pesan'" type="submit"
+                                        class="btn btn-success rounded-3">
+                                        <i class="bi bi-search"></i>
+                                        <span>Cari Tiket</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Cta Section -->
+
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
             <div class="container">
@@ -145,155 +209,6 @@
             </div>
         </section>
         <!-- End Services Section -->
-
-        <!-- ======= Portfolio Section ======= -->
-        {{-- <section id="portfolio" class="portfolio">
-            <div class="container">
-
-                <div class="row" data-aos="fade-up">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container" data-aos="fade-up">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-1.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>App 1</h4>
-                            <p>App</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-1.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="App 1"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-2.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-2.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-3.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>App 2</h4>
-                            <p>App</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-3.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="App 2"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-4.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-4.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Card 2"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-5.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-5.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Web 2"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-6.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-6.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="App 3"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-7.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-7.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Card 1"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-8.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 3</h4>
-                            <p>Card</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-8.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Card 3"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('frontend/assets/img/portfolio/portfolio-9.jpg') }}" class="img-fluid"
-                            alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="{{ url('frontend/assets/img/portfolio/portfolio-9.jpg') }}"
-                                data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
-                                title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="{{ url('portfolio-details.html') }}" class="details-link"
-                                title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section> --}}
-        <!-- End Portfolio Section -->
 
         {{-- Popular Bus Destination Section --}}
         <section class="clients">
