@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Registration Page (v2)</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -21,10 +21,10 @@
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('home') }}" class="h1"><b>Travel</b> Apps</a>
+                <a href="{{ route('home') }}" class="h1"><b>{{ config('app.name') }}</b> Apps</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Register a new account</p>
 
                 <form action="{{ route('register') }}" method="post">
                     @csrf
@@ -92,7 +92,7 @@
                     </div>
                 </form>
 
-                <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+                <a href="{{ route('login') }}" class="text-center">I already have a account</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in (v2)</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -65,7 +65,7 @@
                     <a href="{{ route('password.request') }}">I forgot my password</a>
                 </p>
                 <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+                    <a href="{{ route('register') }}" class="text-center">Register a new account</a>
                 </p>
             </div>
             <!-- /.card-body -->

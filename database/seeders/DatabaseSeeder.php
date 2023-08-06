@@ -35,5 +35,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('Petugas');
+
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10)
+        ]);
+
+        $user->assignRole('Penumpang');
     }
 }
