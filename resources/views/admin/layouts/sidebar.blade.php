@@ -69,32 +69,35 @@
                          </li>
                      </ul>
                  </li>
-                 <li class="nav-header">TRANSPORTASI</li>
-                 <li class="nav-item">
-                     <a href="{{ url('/bis') }}" class="nav-link">
-                         <i class="nav-icon fas fa-bus-alt text-warning"></i>
-                         <p>
-                             Bis
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a href="{{ url('/rute') }}" class="nav-link">
-                         <i class="nav-icon fas fa-road text-secondary"></i>
-                         <p>
-                             Rute
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-header">ADMIN</li>
-                 <li class="nav-item">
-                     <a href="{{ url('/petugas') }}" class="nav-link">
-                         <i class="nav-icon fas fa-id-card-alt text-danger"></i>
-                         <p>
-                             Petugas
-                         </p>
-                     </a>
-                 </li>
+
+                 @role('Admin')
+                     <li class="nav-header">TRANSPORTASI</li>
+                     <li class="nav-item">
+                         <a href="{{ url('/bis') }}" class="nav-link">
+                             <i class="nav-icon fas fa-bus-alt text-warning"></i>
+                             <p>
+                                 Bis
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ url('/rute') }}" class="nav-link">
+                             <i class="nav-icon fas fa-road text-secondary"></i>
+                             <p>
+                                 Rute
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-header">ADMIN</li>
+                     <li class="nav-item">
+                         <a href="{{ url('/petugas') }}" class="nav-link">
+                             <i class="nav-icon fas fa-id-card-alt text-danger"></i>
+                             <p>
+                                 Petugas
+                             </p>
+                         </a>
+                     </li>
+                 @endrole
              </ul>
          </nav>
          <!-- /.sidebar-menu -->
