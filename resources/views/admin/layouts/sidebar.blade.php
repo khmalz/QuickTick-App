@@ -37,8 +37,9 @@
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                  data-accordion="false">
                  <li class="nav-item">
-                     <a href="{{ url('/dashboard') }}" class="nav-link active">
-                         <i class="nav-icon fas fa-scroll"></i>
+                     <a href="{{ url('/dashboard') }}"
+                         class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                         <i class="nav-icon fas fa-scroll text-teal"></i>
                          <p>
                              Dashboard
                          </p>
@@ -73,15 +74,24 @@
                  @role('Admin')
                      <li class="nav-header">TRANSPORTASI</li>
                      <li class="nav-item">
-                         <a href="{{ url('/bis') }}" class="nav-link">
-                             <i class="nav-icon fas fa-bus-alt text-warning"></i>
+                         <a href="{{ url('/bis') }}"
+                             class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                             <i class="nav-icon fas fa-building text-info"></i>
+                             <p>
+                                 Perusahaan
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ url('/bis') }}" class="nav-link {{ request()->routeIs('bis') ? 'active' : '' }}">
+                             <i class="nav-icon fas fa-bus-alt text-orange"></i>
                              <p>
                                  Bis
                              </p>
                          </a>
                      </li>
                      <li class="nav-item">
-                         <a href="{{ url('/rute') }}" class="nav-link">
+                         <a href="{{ url('/rute') }}" class="nav-link {{ request()->routeIs('rute') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-road text-secondary"></i>
                              <p>
                                  Rute
@@ -90,7 +100,8 @@
                      </li>
                      <li class="nav-header">ADMIN</li>
                      <li class="nav-item">
-                         <a href="{{ url('/petugas') }}" class="nav-link">
+                         <a href="{{ url('/petugas') }}"
+                             class="nav-link {{ request()->routeIs('petugas') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-id-card-alt text-danger"></i>
                              <p>
                                  Petugas

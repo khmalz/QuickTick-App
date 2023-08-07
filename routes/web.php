@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PetugasController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMailController;
@@ -34,12 +36,15 @@ Route::get('/success', fn () => view('success-payment'))->name('success');
 
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
-Route::get('/dashboard', fn () => view('admin.dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::resource('petugas', PetugasController::class)->parameters([
+        'petugas' => 'user'
+    ]);
 });
 
 require __DIR__ . '/auth.php';

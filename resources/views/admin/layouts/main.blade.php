@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="{{ asset('/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/admin/dist/css/adminlte.min.css') }}">
+    @stack('styles')
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="{{ asset('/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
+            <img class="animation__wobble" src="{{ asset('frontend/assets/img/QT.png') }}" alt="AdminLTELogo"
                 height="60" width="60">
         </div>
 
@@ -65,6 +66,7 @@
     <script src="{{ asset('/admin/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('/admin/dist/js/pages/dashboard2.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>
