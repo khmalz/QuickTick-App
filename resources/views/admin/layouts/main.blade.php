@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('/admin/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/toastr/toastr.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/admin/dist/css/adminlte.min.css') }}">
     @stack('styles')
@@ -59,8 +61,8 @@
     <script src="{{ asset('/admin/plugins/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
-    <!-- ChartJS -->
-    <script src="{{ asset('/admin/plugins/chart.js/Chart.min.js') }}"></script>
+
+    <script src="{{ asset('/admin/plugins/toastr/toastr.min.js') }}"></script>
 
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/admin/dist/js/demo.js') }}"></script>

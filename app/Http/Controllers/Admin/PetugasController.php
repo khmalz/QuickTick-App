@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 
 class PetugasController extends Controller
@@ -13,7 +14,9 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        return view('admin.petugas.index');
+        $users = User::role('Petugas')->get();
+
+        return view('admin.petugas.index', compact('users'));
     }
 
     /**
@@ -29,7 +32,19 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', Rules\Password::defaults()],
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
+
+        $user->assignRole('Petugas');
+
+        return to_route('petugas.index')->with('success', 'Successfully created a new petugas');
     }
 
     /**
@@ -45,7 +60,7 @@ class PetugasController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.petugas.edit');
+        return view('admin.petugas.edit', compact('user'));
     }
 
     /**
@@ -53,7 +68,21 @@ class PetugasController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['nullable', Rules\Password::defaults()],
+        ]);
+
+        if (!empty($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        return to_route('petugas.index')->with('success', 'Successfully edited a petugas');
     }
 
     /**
@@ -61,6 +90,8 @@ class PetugasController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return to_route('petugas.index')->with('success', 'Successfully deleted a petugas');
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" data-success="{{ session('success') }}">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -50,36 +50,57 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    AdminLTE v3
-                                </td>
-                                <td>
-                                    AdminLTE@gmail.com
-                                </td>
-                                <td>
-                                    5 February 2021
-                                </td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-info btn-sm" href="{{ route('petugas.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="{{ url('#') }}">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach ($users as $petugas)
+                                <tr>
+                                    <td>
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td>
+                                        {{ $petugas->name }}
+                                    </td>
+                                    <td>
+                                        {{ $petugas->email }}
+                                    </td>
+                                    <td>
+                                        {{ $petugas->created_at->format('j F Y') }}
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-info btn-sm" href="{{ route('petugas.edit', $petugas->id) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#modalDelete">
+                                            <i class="fas fa-trash"></i>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
+
+                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form action="{{ route('petugas.destroy', $petugas->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.card -->
 
@@ -87,3 +108,14 @@
         <!-- /.content -->
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function showToastr(message) {
+            toastr.success(message)
+        }
+
+        let successMessage = document.querySelector('.content-wrapper').dataset.success;
+        if (successMessage) showToastr(successMessage);
+    </script>
+@endpush

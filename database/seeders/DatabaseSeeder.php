@@ -27,8 +27,18 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('Admin');
 
         $user = User::create([
-            'name' => 'Petugas',
-            'email' => 'petugas@gmail.com',
+            'name' => 'Petugas 1',
+            'email' => 'petugas1@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10)
+        ]);
+
+        $user->assignRole('Petugas');
+
+        $user = User::create([
+            'name' => 'Petugas 2',
+            'email' => 'petugas2@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10)

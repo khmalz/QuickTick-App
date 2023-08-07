@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('petugas', PetugasController::class)->parameters([
         'petugas' => 'user'
-    ]);
+    ])->except('show');
 });
 
 require __DIR__ . '/auth.php';
