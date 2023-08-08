@@ -92,7 +92,8 @@
                          </a>
                      </li>
                      <li class="nav-item">
-                         <a href="{{ url('/rute') }}" class="nav-link {{ request()->routeIs('rute') ? 'active' : '' }}">
+                         <a href="{{ route('rute.index') }}"
+                             class="nav-link {{ request()->routeIs('rute.*') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-road text-secondary"></i>
                              <p>
                                  Rute

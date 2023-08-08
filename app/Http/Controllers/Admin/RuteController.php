@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Rute;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RuteController extends Controller
 {
@@ -12,7 +13,7 @@ class RuteController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.rute.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class RuteController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rute.create');
     }
 
     /**
@@ -44,7 +45,7 @@ class RuteController extends Controller
      */
     public function edit(Rute $rute)
     {
-        //
+        return view('admin.rute.edit', compact('rute'));
     }
 
     /**
