@@ -71,36 +71,37 @@
                                             Edit
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#modalDelete">
+                                            data-target="#modalDelete{{ $petugas->id }}">
                                             <i class="fas fa-trash"></i>
                                             Delete
                                         </button>
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="modalDelete{{ $petugas->id }}" tabindex="-1"
+                                    aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <form action="{{ route('petugas.destroy', $petugas->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
-
-                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <form action="{{ route('petugas.destroy', $petugas->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- /.card -->
 
