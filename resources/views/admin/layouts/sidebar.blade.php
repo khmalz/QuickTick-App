@@ -74,8 +74,8 @@
                  @role('Admin')
                      <li class="nav-header">TRANSPORTASI</li>
                      <li class="nav-item">
-                         <a href="{{ url('/bis') }}"
-                             class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                         <a href="{{ route('company.index') }}"
+                             class="nav-link {{ request()->routeIs('company.*') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-building text-info"></i>
                              <p>
                                  Perusahaan
@@ -101,7 +101,7 @@
                      <li class="nav-header">ADMIN</li>
                      <li class="nav-item">
                          <a href="{{ url('/petugas') }}"
-                             class="nav-link {{ request()->routeIs('petugas') ? 'active' : '' }}">
+                             class="nav-link {{ request()->routeIs('petugas.*') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-id-card-alt text-danger"></i>
                              <p>
                                  Petugas

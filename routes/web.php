@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\PetugasController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('petugas', PetugasController::class)->parameters([
         'petugas' => 'user'
     ])->except('show');
+    Route::resource('/company', CompanyController::class);
 });
 
 require __DIR__ . '/auth.php';
