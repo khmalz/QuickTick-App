@@ -26,4 +26,11 @@ class CompanyRequest extends FormRequest
             'logo' => ['required_without:id', 'file', 'image', 'mimes:png,jpg,jpeg', 'max:5120'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'logo.required_without' => 'The logo field is required when newly creating.',
+        ];
+    }
 }

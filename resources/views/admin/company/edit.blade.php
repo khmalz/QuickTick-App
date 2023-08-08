@@ -48,11 +48,19 @@
                                     <label for="logoFile">Upload Logo</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="logoFile" name="logo"
-                                                onchange="previewImage()">
+                                            <input type="file"
+                                                class="custom-file-input @error('logo') is-invalid @enderror" id="logoFile"
+                                                name="logo" onchange="previewImage()">
                                             <label class="custom-file-label" for="logoFile">Choose image</label>
                                         </div>
                                     </div>
+                                    @error('logo')
+                                        <small>
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
                                     @if ($company->logo == 'placeholder')
                                         <img class="img-preview col-md-8 col-lg-4 d-none mt-3 rounded p-0" alt="empty">
                                     @else
