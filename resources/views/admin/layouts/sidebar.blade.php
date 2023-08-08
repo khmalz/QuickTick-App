@@ -83,7 +83,8 @@
                          </a>
                      </li>
                      <li class="nav-item">
-                         <a href="{{ url('/bis') }}" class="nav-link {{ request()->routeIs('bis') ? 'active' : '' }}">
+                         <a href="{{ route('bus.index') }}"
+                             class="nav-link {{ request()->routeIs('bus.*') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-bus-alt text-orange"></i>
                              <p>
                                  Bis

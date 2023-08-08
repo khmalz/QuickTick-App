@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Bus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BusController extends Controller
 {
@@ -12,7 +13,7 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.bus.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class BusController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bus.create');
     }
 
     /**
@@ -44,7 +45,7 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
-        //
+        return view('admin.bus.edit', compact('bus'));
     }
 
     /**

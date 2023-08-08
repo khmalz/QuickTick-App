@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\Admin\PetugasController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMailController;
+use App\Http\Controllers\Admin\BusController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\PetugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
         'petugas' => 'user'
     ])->except('show');
     Route::resource('/company', CompanyController::class);
+    Route::resource('/bus', BusController::class);
 });
 
 require __DIR__ . '/auth.php';
