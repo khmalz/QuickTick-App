@@ -29,8 +29,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table-striped projects table">
+                <div class="card-body table-responsive-lg p-0">
+                    <table class="table-striped projects text-nowrap table">
                         <thead>
                             <tr>
                                 <th style="width: 1%">

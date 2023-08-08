@@ -29,8 +29,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table-striped projects table">
+                <div class="card-body table-responsive-lg p-0">
+                    <table class="table-striped projects text-nowrap table">
                         <thead>
                             <tr>
                                 <th style="width: 1%">
@@ -58,7 +58,7 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="{{ $company->name }}" class="table-avatar rounded-0"
+                                                <img alt="{{ $company->name }}" class="table-avatar rounded-0 bg-white"
                                                     style="width: 7rem !important"
                                                     src="{{ $company->logo !== 'placeholder' ? \Illuminate\Support\Facades\Storage::url($company->logo) : asset('admin/dist/img/placeholder.jpg') }}">
                                             </li>
