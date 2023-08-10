@@ -49,7 +49,9 @@ Route::middleware('auth')->group(function () {
         'petugas' => 'user'
     ])->except('show');
     Route::resource('company', CompanyController::class);
-    Route::resource('bus', BusController::class);
+    Route::resource('bus', BusController::class)->parameters([
+        'bus' => 'bus'
+    ]);
     Route::resource('rute', RuteController::class);
 });
 

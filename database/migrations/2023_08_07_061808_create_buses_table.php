@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->references('id')->on('companies')->cascadeOnDelete();
-            $table->ulid('kode')->unique();
+            $table->string('kode');
             $table->string('name');
             $table->integer('seat');
             $table->timestamps();

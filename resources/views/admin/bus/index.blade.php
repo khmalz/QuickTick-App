@@ -48,242 +48,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Internet
-                                    Explorer 5.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>5</td>
-                                <td>C</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Internet
-                                    Explorer 5.5
-                                </td>
-                                <td>Win 95+</td>
-                                <td>5.5</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Internet
-                                    Explorer 6
-                                </td>
-                                <td>Win 98+</td>
-                                <td>6</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Internet Explorer 7</td>
-                                <td>Win XP SP2+</td>
-                                <td>7</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>AOL browser (AOL desktop)</td>
-                                <td>Win XP</td>
-                                <td>6</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Firefox 1.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Firefox 1.5</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Firefox 2.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Firefox 3.0</td>
-                                <td>Win 2k+ / OSX.3+</td>
-                                <td>1.9</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Camino 1.0</td>
-                                <td>OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>Camino 1.5</td>
-                                <td>OSX.3+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('bus.edit', '1') }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#modalDelete{{ '1' }}">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach ($buses as $bus)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $bus->company->name }}</td>
+                                    <td>{{ $bus->kode }}</td>
+                                    <td> {{ $bus->name }}</td>
+                                    <td>{{ $bus->seat }}</td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="{{ route('bus.edit', $bus->id) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#modalDelete{{ $bus->id }}">
+                                            <i class="fas fa-trash"></i>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <div class="modal fade" id="modalDelete{{ $bus->id }}" tabindex="-1"
+                                    aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <form action="{{ route('bus.destroy', $bus->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

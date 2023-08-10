@@ -36,9 +36,10 @@
                                     <select class="form-control @error('company_id') is-invalid @enderror"
                                         name="company_id">
                                         <option disabled selected>Pilih</option>
-                                        <option value="1">Perusahaan 1</option>
-                                        <option value="2">Perusahaan 2</option>
-                                        <option value="3">Perusahaan 3</option>
+                                        @foreach ($companies as $company)
+                                            <option {{ old('company_id') == $company->id ? 'selected' : null }}
+                                                value="{{ $company->id }}">{{ $company->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('company_id')
                                         <div class="invalid-feedback">
@@ -47,15 +48,33 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputKode">Kode</label>
-                                    <input type="text" id="inputKode" type="kode"
-                                        class="form-control @error('kode') is-invalid @enderror"
-                                        value="{{ old('kode') }}">
-                                    @error('kode')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <label for="inputKode1">Kode</label>
+                                    <input type="hidden" id="kode" value="{{ old('kode') }}" name="kode">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" id="inputKode1" name="kode1"
+                                                class="form-control @error('kode1') is-invalid @enderror"
+                                                value="{{ old('kode1') }}">
+                                            @error('kode1')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-                                    @enderror
+                                        <div class="align-self-center col-auto">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" id="inputKode2" name="kode2"
+                                                class="form-control @error('kode2') is-invalid @enderror"
+                                                value="{{ old('kode2') }}">
+                                            @error('kode2')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
@@ -70,7 +89,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputSeat">Seat</label>
-                                    <input type="text" id="inputSeat" type="seat"
+                                    <input type="text" id="inputSeat" type="seat" name="seat"
                                         class="form-control @error('seat') is-invalid @enderror"
                                         value="{{ old('seat') }}">
                                     @error('seat')
@@ -97,3 +116,25 @@
     </div>
     <!-- /.content-wrapper -->
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Dapatkan elemen input kode dan input kode1 dan kode2
+            const kodeInput = $('#kode');
+            const inputKode1 = $('#inputKode1');
+            const inputKode2 = $('#inputKode2');
+
+            // Fungsi untuk mengupdate nilai input kode
+            function updateKode() {
+                const value1 = inputKode1.val().toUpperCase();
+                const value2 = inputKode2.val();
+                kodeInput.val(`${value1}-${value2}`);
+            }
+
+            // Tambahkan event listener untuk setiap perubahan pada input kode1 dan kode2
+            inputKode1.on('input', updateKode);
+            inputKode2.on('input', updateKode);
+        })
+    </script>
+@endpush
