@@ -50,7 +50,9 @@ class RuteController extends Controller
      */
     public function show(Rute $rute)
     {
-        //
+        $rute->load('bus', 'bus.company');
+
+        return view('admin.rute.detail', compact('rute'));
     }
 
     /**

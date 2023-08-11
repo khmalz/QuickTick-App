@@ -58,7 +58,7 @@
                                     <td>{{ $rute->asal }}</td>
                                     <td>{{ $rute->tujuan }}</td>
                                     <td>{{ $rute->harga }}</td>
-                                    <td>{{ $rute->departure->format('d F Y H:i') }}</td>
+                                    <td>{{ $rute->departure }}</td>
                                     <td>
                                         <a class="btn btn-primary btn-sm" href="{{ route('rute.show', $rute->id) }}">
                                             <i class="fas fa-info">
