@@ -102,7 +102,7 @@
                      </li>
                      <li class="nav-header">ADMIN</li>
                      <li class="nav-item">
-                         <a href="{{ url('/petugas') }}"
+                         <a href="{{ route('petugas.index') }}"
                              class="nav-link {{ request()->routeIs('petugas.*') ? 'active' : '' }}">
                              <i class="nav-icon fas fa-id-card-alt text-danger"></i>
                              <p>

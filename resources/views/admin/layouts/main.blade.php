@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }}</title>
 
+    <link href="{{ asset('frontend/assets/img/favicon.png') }}" rel="icon">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,9 +17,11 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('admin/plugins/toastr/toastr.min.css') }}">
+
+    @stack('styles')
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
-    @stack('styles')
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed">
@@ -52,11 +56,13 @@
     <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
 
     <script src="{{ asset('admin/plugins/toastr/toastr.min.js') }}"></script>
+
     @stack('scripts')
+
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
 </body>
 
 </html>

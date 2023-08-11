@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Bus;
+use App\Models\City;
 use App\Models\Rute;
 use Illuminate\Http\Request;
+use App\Http\Requests\RuteRequest;
 use App\Http\Controllers\Controller;
 
 class RuteController extends Controller
@@ -13,7 +16,9 @@ class RuteController extends Controller
      */
     public function index()
     {
-        return view('admin.rute.index');
+        $rutes = Rute::with('bus', 'bus.company')->get();
+
+        return view('admin.rute.index', compact('rutes'));
     }
 
     /**
@@ -21,15 +26,23 @@ class RuteController extends Controller
      */
     public function create()
     {
-        return view('admin.rute.create');
+        $buses = Bus::with('company')->get();
+        $cities = City::with('terminals')->get();
+
+        return view('admin.rute.create', compact('buses', 'cities'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RuteRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['harga'] = str_replace(['.', ','], '', $data['harga']);
+
+        Rute::create($data);
+
+        return to_route('rute.index')->with('success', 'Successfully created a new rute');
     }
 
     /**
@@ -45,15 +58,24 @@ class RuteController extends Controller
      */
     public function edit(Rute $rute)
     {
-        return view('admin.rute.edit', compact('rute'));
+        $buses = Bus::with('company')->get();
+        $cities = City::with('terminals')->get();
+        $rute->load('bus', 'bus.company');
+
+        return view('admin.rute.edit', compact('rute', 'buses', 'cities'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rute $rute)
+    public function update(RuteRequest $request, Rute $rute)
     {
-        //
+        $data = $request->validated();
+        $data['harga'] = str_replace(['.', ','], '', $data['harga']);
+
+        $rute->update($data);
+
+        return to_route('rute.index')->with('success', 'Successfully edited a rute');
     }
 
     /**
@@ -61,6 +83,8 @@ class RuteController extends Controller
      */
     public function destroy(Rute $rute)
     {
-        //
+        $rute->delete();
+
+        return to_route('rute.index')->with('success', 'Successfully deleted a rute');
     }
 }

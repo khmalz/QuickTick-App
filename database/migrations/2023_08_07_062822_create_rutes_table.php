@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rutes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bus_id')->references('id')->on('buses')->cascadeOnDelete();
+            $table->string('asal');
             $table->string('tujuan');
             $table->string('rute_awal');
             $table->string('rute_akhir');
