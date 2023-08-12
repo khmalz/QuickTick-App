@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Password;
-use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -35,7 +32,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $data = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
