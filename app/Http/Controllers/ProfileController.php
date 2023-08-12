@@ -2,59 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+    public function index(Request $request): View
+    {
+        return view('profile', [
+            'user' => $request->user()->load('passenger'),
+        ]);
+    }
+
+    /**
+     * Display the user's profile form.
+     */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
+        return view('profile-update', [
+            'user' => $request->user()->load('passenger'),
         ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $data = $request->validate([
+            'name' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
+            'password' => ['nullable', 'confirmed', Password::defaults()],
+            'gender' => ['nullable', 'string'],
+            'telephone' =>  ['nullable', 'numeric', 'regex:/^(\62|0*)[2-9]{1}[0-9]{5,20}$/']
+        ], [
+            'telephone.regex' => "The phone number must start with 62/0"
         ]);
 
-        $user = $request->user();
+        if (!empty($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            unset($data['password']);
+        }
 
-        Auth::logout();
+        $request->user()->update($data);
+        $request->user()->passenger()->update([
+            'telephone' => $data['telephone'],
+            'gender' => $data['gender'],
+        ]);
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return redirect(route('profile'))->with('status', 'profile-updated');
     }
 }

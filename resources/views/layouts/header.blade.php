@@ -18,7 +18,7 @@
                 @else
                     <li class="dropdown"><a href="#"><span>Welcome</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a>{{ auth()->user()->name }}</a></li>
+                            <li><a href="{{ route('profile') }}">{{ auth()->user()->name }}</a></li>
                             @role(['Admin', 'Petugas'])
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             @else

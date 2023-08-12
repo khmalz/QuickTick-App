@@ -30,6 +30,9 @@ Route::get('/search', function () {
     $kotas = ['Jakarta', 'Surabaya', 'Bandung', 'Cilacap', 'Jepara', 'Yogyakarta', 'Bali', 'Semarang', 'Malang', 'Magelang', 'Palembang', 'Medan'];
     return view('search', compact('kotas'));
 });
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile-update', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::match(['patch', 'put'], '/profile-update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/my-tiket', fn () => view('list-tiket'))->name('mytiket');
 Route::get('/detail-tiket', fn () => view('detail-tiket'))->name('detailTiket');
 Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
@@ -40,10 +43,6 @@ Route::get('/success', fn () => view('success-payment'))->name('success');
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('petugas', PetugasController::class)->parameters([
         'petugas' => 'user'
