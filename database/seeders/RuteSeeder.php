@@ -105,23 +105,24 @@ class RuteSeeder extends Seeder
             ],
         ];
 
-        foreach ($terminals as $kota => $daftarTerminal) {
-            $randomTerminalAwal = $daftarTerminal[array_rand($daftarTerminal)];
+        foreach ($terminals as $asal => $daftarTerminal) {
+            foreach ($daftarTerminal as $ruteAwal) {
+                foreach ($terminals as $tujuan => $daftarTujuan) {
+                    foreach ($daftarTujuan as $ruteAkhir) {
+                        $randomBus = Bus::inRandomOrder()->first();
 
-            foreach ($terminals as $randomKota => $daftarRandomTerminal) {
-                if ($randomKota != $kota) {
-                    $randomTerminalAkhir = $daftarRandomTerminal[array_rand($daftarRandomTerminal)];
-                    $randomBus = Bus::inRandomOrder()->first();
-
-                    Rute::create([
-                        'bus_id' => $randomBus->id,
-                        'asal' => $kota,
-                        'tujuan' => $randomKota,
-                        'rute_awal' => $randomTerminalAwal,
-                        'rute_akhir' => $randomTerminalAkhir,
-                        'harga' => 2003000,
-                        'departure' => fake()->dateTime()
-                    ]);
+                        if ($asal !== $tujuan && $ruteAwal !== $ruteAkhir) {
+                            Rute::create([
+                                'bus_id' => $randomBus->id,
+                                'asal' => $asal,
+                                'rute_awal' => $ruteAwal,
+                                'tujuan' => $tujuan,
+                                'rute_akhir' => $ruteAkhir,
+                                'harga' => 2003000,
+                                'departure' => fake()->dateTimeBetween('now', '+1 month')
+                            ]);
+                        }
+                    }
                 }
             }
         }

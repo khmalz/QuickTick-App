@@ -28,9 +28,9 @@
     <link href="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    @stack('styles')
     <!-- Template Main CSS File -->
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
-    @stack('styles')
 </head>
 
 <body>
@@ -55,9 +55,9 @@
     <script src="{{ asset('frontend/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    @stack('scripts')
     <!-- Template Main JS File -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-    @stack('scripts')
 </body>
 
 </html>

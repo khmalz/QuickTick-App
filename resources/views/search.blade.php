@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@push('styles')
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+@endpush
+
 @section('content')
     <main id="main">
 
@@ -56,26 +64,33 @@
                                         <div class="row mb-3">
                                             <div class="col-md-4">
                                                 <label for="dari" class="form-label">Dari:</label>
-                                                <select class="form-select" id="dari" required>
-                                                    <option disabled selected>Pilih Tujuan Keberangkatan</option>
-                                                    @foreach ($kotas as $kota)
-                                                        <option value="{{ $kota }}">{{ $kota }}</option>
+                                                <select class="form-select" id="select2-asal"
+                                                    data-placeholder="Pilih Asal Keberangkatan" name="asal">
+                                                    <option></option>
+                                                    @foreach ($terminals as $terminal)
+                                                        <option {{ request('asal') == $terminal->name ? 'selected' : null }}
+                                                            value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                            {{ $terminal->city->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="ke" class="form-label">Ke:</label>
-                                                <select class="form-select" id="ke" required>
-                                                    <option disabled selected>Pilih Tujuan Kedatangan</option>
-                                                    @foreach ($kotas as $kotas)
-                                                        <option value="{{ $kotas }}">{{ $kotas }}</option>
+                                                <select class="form-select" id="select2-tujuan"
+                                                    data-placeholder="Pilih Tujuan Keberangkatan" name="tujuan">
+                                                    <option></option>
+                                                    @foreach ($terminals as $terminal)
+                                                        <option
+                                                            {{ request('tujuan') == $terminal->name ? 'selected' : null }}
+                                                            value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                            {{ $terminal->city->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="berangkat" class="form-label">Berangkat:</label>
                                                 <input type="date" class="form-control" id="berangkat" required
-                                                    min="{{ date('Y-m-d') }}">
+                                                    value="{{ request('departure') }}" min="{{ date('Y-m-d') }}">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -83,12 +98,9 @@
                                                 <label for="penumpang" class="form-label">Penumpang:</label>
                                                 <select class="form-select" id="penumpang" required>
                                                     <option disabled selected>Pilih Jumlah Penumpang</option>
-                                                    @for ($dewasa = 1; $dewasa <= 3; $dewasa++)
-                                                        @php
-                                                            $totalPenumpang = $dewasa;
-                                                            $label = "$dewasa Dewasa";
-                                                        @endphp
-                                                        <option value="{{ $totalPenumpang }}">{{ $label }}</option>
+                                                    @for ($dewasa = 1; $dewasa <= 5; $dewasa++)
+                                                        <option value="{{ $dewasa }}">{{ $dewasa }} Dewasa
+                                                        </option>
                                                     @endfor
                                                 </select>
                                             </div>
@@ -112,29 +124,33 @@
         <section id="testimonials" class="testimonials mt-4">
             <div class="container">
                 <div class="row gap-3">
-                    <div class="col-lg-12" data-aos="fade-up">
-                        <div class="testimonial-item">
-                            <div class="row gap-3">
-                                <div class="col-12">
-                                    <h3>Jackal Holidays</h3>
-                                    <span>Luxury</span>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row w-100 align-items-center">
-                                        <div class="col-md-4">
-                                            Bandung <i class="bi bi-arrow-right"></i> Jakarta
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            3J 35M
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row gap-1 text-end">
-                                                <div class="col-12">
-                                                    Rp100.000/org
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="/pesan"
-                                                        class="btn btn-warning btn-sm rounded-2 text-white">Pesan</a>
+                    @forelse ($rutes as $rute)
+                        <div class="col-lg-12" data-aos="fade-up">
+                            <div class="testimonial-item">
+                                <div class="row gap-3">
+                                    <div class="col-12">
+                                        <h3>{{ $rute->bus->company->name }}</h3>
+                                        <span>{{ $rute->bus->name }}</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row w-100 align-items-center" style="row-gap: 15px">
+                                            <div class="col-md-4">
+                                                <small>{{ $rute->rute_awal }} ({{ $rute->asal }}) <i
+                                                        class="bi bi-arrow-right"></i>
+                                                    {{ $rute->rute_akhir }} ({{ $rute->tujuan }})</small>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                {{ $rute->departure }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row text-md-end gap-1">
+                                                    <div class="col-12">
+                                                        Rp{{ $rute->harga }}/org
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <a href="/pesan"
+                                                            class="btn btn-warning btn-sm rounded-2 text-white">Pesan</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,39 +158,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-item">
-                            <div class="row gap-3">
-                                <div class="col-12">
-                                    <h3>Baraya</h3>
-                                    <span>Reguler</span>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row w-100">
-                                        <div class="col">
-                                            Semarang <i class="bi bi-arrow-right"></i> Surabaya
-                                        </div>
-                                        <div class="col text-center">
-                                            2J 12M
-                                        </div>
-                                        <div class="col">
-                                            <div class="row gap-1 text-end">
-                                                <div class="col-12">
-                                                    Rp95.000/org
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="/pesan"
-                                                        class="btn btn-warning btn-sm rounded-2 text-white">Pesan</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                    @empty
+                        <div class="col-lg-12" data-aos="fade-up">
+                            <div class="testimonial-item">
+                                <div class="row justify-content-center align-items-center gap-3">
+                                    <div class="col-12">
+                                        <h3 class="fs-4 text-center">Data not found</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>
@@ -182,3 +176,24 @@
 
     </main><!-- End #main -->
 @endsection
+
+@push('scripts')
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $('#select2-asal').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+
+        $('#select2-tujuan').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+    </script>
+@endpush

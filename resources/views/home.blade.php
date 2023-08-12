@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @push('styles')
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
     <style>
         .image-container {
             height: clamp(200px, 25vw, 210px);
@@ -103,53 +109,55 @@
                     <div class="col-md-11">
                         <div class="rounded-4 border p-4 shadow-lg" style="background-color: rgb(246, 245, 245)">
                             <h2 class="mb-4">Pesan Tiket</h2>
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="dari" class="form-label">Dari:</label>
-                                    <select class="form-select" id="dari" required>
-                                        <option disabled selected>Pilih Tujuan Keberangkatan</option>
-                                        @foreach ($kotas as $kota)
-                                            <option value="{{ $kota }}">{{ $kota }}</option>
-                                        @endforeach
-                                    </select>
+                            <form action="{{ route('search_tiket') }}" method="GET">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="dari" class="form-label">Dari:</label>
+                                        <select class="form-select" id="select2-asal"
+                                            data-placeholder="Pilih Asal Keberangkatan" name="asal" required>
+                                            <option></option>
+                                            @foreach ($terminals as $terminal)
+                                                <option value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                    {{ $terminal->city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="ke" class="form-label">Ke:</label>
+                                        <select class="form-select" id="select2-tujuan"
+                                            data-placeholder="Pilih Tujuan Keberangkatan" name="tujuan">
+                                            <option></option>
+                                            @foreach ($terminals as $terminal)
+                                                <option value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                    {{ $terminal->city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="berangkat" class="form-label">Berangkat:</label>
+                                        <input type="date" name="departure" class="form-control" id="berangkat"
+                                            min="{{ date('Y-m-d') }}">
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="ke" class="form-label">Ke:</label>
-                                    <select class="form-select" id="ke" required>
-                                        <option disabled selected>Pilih Tujuan Kedatangan</option>
-                                        @foreach ($kotas as $kotas)
-                                            <option value="{{ $kotas }}">{{ $kotas }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row mb-3">
+                                    <div class="col-md-8">
+                                        <label for="penumpang" class="form-label">Penumpang:</label>
+                                        <select class="form-select" id="penumpang" name="seat">
+                                            <option disabled selected>Pilih Jumlah Penumpang</option>
+                                            @for ($dewasa = 1; $dewasa <= 5; $dewasa++)
+                                                <option value="{{ $dewasa }}">{{ $dewasa }} Dewasa
+                                                </option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-end justify-content-end mt-md-0 mt-3">
+                                        <button type="submit" class="btn btn-success rounded-3">
+                                            <i class="bi bi-search"></i>
+                                            <span>Search Tiket</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="berangkat" class="form-label">Berangkat:</label>
-                                    <input type="date" class="form-control" id="berangkat" required
-                                        min="{{ date('Y-m-d') }}">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-8">
-                                    <label for="penumpang" class="form-label">Penumpang:</label>
-                                    <select class="form-select" id="penumpang" required>
-                                        <option disabled selected>Pilih Jumlah Penumpang</option>
-                                        @for ($dewasa = 1; $dewasa <= 3; $dewasa++)
-                                            @php
-                                                $totalPenumpang = $dewasa;
-                                                $label = "$dewasa Dewasa";
-                                            @endphp
-                                            <option value="{{ $totalPenumpang }}">{{ $label }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                <div class="col-md-4 d-flex align-items-end justify-content-end mt-md-0 mt-3">
-                                    <button onclick="location.href='/pesan'" type="submit"
-                                        class="btn btn-success rounded-3">
-                                        <i class="bi bi-search"></i>
-                                        <span>Cari Tiket</span>
-                                    </button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -338,3 +346,24 @@
     </main>
     <!-- End #main -->
 @endsection
+
+@push('scripts')
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $('#select2-asal').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+
+        $('#select2-tujuan').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+    </script>
+@endpush
