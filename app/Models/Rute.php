@@ -23,6 +23,8 @@ class Rute extends Model
         'departure',
     ];
 
+    protected $with = ['bus'];
+
     public function bus(): BelongsTo
     {
         return $this->belongsTo(Bus::class);
@@ -55,5 +57,18 @@ class Rute extends Model
         return Attribute::make(
             get: fn (string $value) => Carbon::parse($value)->format('H:i - d F Y'),
         );
+    }
+
+    public function orderCount()
+    {
+        return $this->orders()->count();
+    }
+
+    public function availableSeat()
+    {
+        $seats = $this->bus->seat;
+        $orders = $this->orderCount();
+
+        return $seats - $orders;
     }
 }

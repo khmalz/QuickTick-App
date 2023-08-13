@@ -18,7 +18,7 @@ class TiketController extends Controller
         $rute_akhir = $request->tujuan;
         $departure = $request->departure;
 
-        $rutes = Rute::with('bus', 'bus.company')
+        $rutes = Rute::with('bus.company')
             ->where('rute_awal', $rute_awal)
             ->when($rute_akhir, function ($query) use ($rute_akhir) {
                 $query->where('rute_akhir', $rute_akhir);

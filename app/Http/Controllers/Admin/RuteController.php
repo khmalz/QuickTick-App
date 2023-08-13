@@ -22,7 +22,7 @@ class RuteController extends Controller
         $rutes = [];
 
         if ($departure || $asal) {
-            $rutes = Rute::with('bus', 'bus.company')
+            $rutes = Rute::with('bus.company')
                 ->when($asal, function ($query) use ($asal) {
                     $query->where('asal', $asal);
                 })
