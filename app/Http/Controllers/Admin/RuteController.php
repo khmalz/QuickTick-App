@@ -14,11 +14,27 @@ class RuteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rutes = Rute::with('bus', 'bus.company')->get();
+        $departure = $request->departure;
+        $asal = $request->asal;
 
-        return view('admin.rute.index', compact('rutes'));
+        $rutes = [];
+
+        if ($departure || $asal) {
+            $rutes = Rute::with('bus', 'bus.company')
+                ->when($asal, function ($query) use ($asal) {
+                    $query->where('asal', $asal);
+                })
+                ->when($departure, function ($query) use ($departure) {
+                    $query->whereDate('departure', $departure);
+                })
+                ->get();
+        }
+
+        $cities = City::all();
+
+        return view('admin.rute.index', compact('rutes', 'cities'));
     }
 
     /**

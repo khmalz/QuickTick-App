@@ -25,9 +25,8 @@ use App\Http\Controllers\TiketController;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/search', [TiketController::class, 'index'])->name('search_tiket');
 Route::get('/about', fn () => view('about'))->name('about');
-
-
 Route::get('/contact', fn () => view('contact'))->name('contact');
+
 Route::get('/my-tiket', fn () => view('list-tiket'))->name('mytiket');
 Route::get('/detail-tiket', fn () => view('detail-tiket'))->name('detailTiket');
 Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
