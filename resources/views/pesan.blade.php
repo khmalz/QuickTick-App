@@ -24,30 +24,35 @@
                 <div class="row">
                     <div class="col-lg-8 entries">
                         <div class="entry" id="form-kontak">
-                            <h2 class="entry-title fs-4">
+                            <h2 class="entry-title fs-4 d-flex justify-content-between">
                                 <p>Detail Kontak (Untuk Tiket)</p>
+                                <a href="/profile-update" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    Kontak</a>
                             </h2>
                             <div class="entry-content">
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">Nama Lengkap*</label>
-                                    <input type="text" class="form-control" id="fullName">
+                                    <label for="fullName" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" disabled id="fullName"
+                                        value="{{ $user->name }}">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="phone" class="form-label">Nomer Telepon*</label>
-                                            <input type="tel" class="form-control" id="phone">
+                                            <label for="phone" class="form-label">Nomer Telepon</label>
+                                            <input type="tel" disabled class="form-control" id="phone"
+                                                value="{{ $user->passenger->telephone }}">
                                             <small>
                                                 <div id="phoneHelpBlock" class="form-text">
-                                                    contoh +628712738122
+                                                    contoh 628712738122
                                                 </div>
                                             </small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email*</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" disabled class="form-control" id="email"
+                                                value="{{ $user->email }}">
                                             <small>
                                                 <div id="emailHelpBlock" class="form-text">
                                                     contoh email@example.com
@@ -99,7 +104,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="entry" id="confirm-kontak">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary">Continue</button>
+                        </div>
+                        {{-- <div class="entry" id="confirm-kontak">
                             <h2 class="entry-title fs-4 d-flex justify-content-between">
                                 <p>Detail Kontak (Untuk Tiket)</p>
                                 <button class="btn btn-info text-info border-0 bg-transparent">Edit
@@ -178,28 +186,26 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {{-- <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary">Continue</button>
                         </div> --}}
-                        <div class="d-flex justify-content-end">
+                        {{-- <div class="d-flex justify-content-end">
                             <button class="btn btn-warning text-white"
                                 onclick="confirm('apakah sudah yakin?') ? location.href='/payment' : null">Continue
                                 to
                                 Payment</button>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-lg-4">
                         <div class="sidebar">
-                            <div class="sidebar-item categories d-flex align-items-center justify-content-between mb-2">
-                                <p class="fw-semibold">Bandung <i class="bi bi-arrow-right"></i> Jakarta</p>
+                            <div class="sidebar-item categories mb-2">
+                                <p class="fw-semibold">{{ $rute->rute_awal }} ({{ $rute->asal }}) <i
+                                        class="bi bi-arrow-right"></i> {{ $rute->rute_akhir }} ({{ $rute->tujuan }})</p>
                                 <small>
-                                    <p>Baraya (Regular)</p>
+                                    <p>{{ $rute->bus->kode }} ({{ $rute->bus->name }})</p>
                                 </small>
                             </div>
                             <div class="sidebar-item tags">
-                                <p>Jumat, 4 Juli 2018</p>
+                                <p>{{ $rute->departure }}</p>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rute;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,12 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, Rute $rute)
     {
-        //
+        $rute->load('bus');
+        $user = $request->user();
+
+        return view('pesan', compact('rute', 'user'));
     }
 
     /**

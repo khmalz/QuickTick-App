@@ -26,6 +26,7 @@ class TiketController extends Controller
             ->when($departure, function ($query) use ($departure) {
                 $query->whereDate('departure', $departure);
             })
+            ->orderBy('departure')
             ->get();
 
         $terminals = Terminal::with('city')->get();

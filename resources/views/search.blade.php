@@ -35,15 +35,23 @@
                         <div class="testimonial-item rounded-3 py-3" style="background-color: rgb(240,243,247)">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p style="font-style: normal !important"><strong>Jakarta <i
-                                                class="bi bi-arrow-right"></i> Bandung</strong></p>
+                                    <p style="font-style: normal !important">
+                                        <strong>{{ request('asal') }}</strong>
+                                        {!! request('tujuan') ? '<i class="bi bi-arrow-right"></i> Bandung</strong>' : null !!}
+                                    </p>
+
                                     <div class="d-flex gap-4">
-                                        <small>
-                                            <p style="font-style: normal !important">Jumat, 4 Juli 2021</p>
-                                        </small>
-                                        <small>
-                                            <p style="font-style: normal !important">1 Dewasa</p>
-                                        </small>
+                                        @if (request('departure'))
+                                            <small>
+                                                <p style="font-style: normal !important">
+                                                    {{ date('d-m-Y', strtotime(request('departure'))) }}</p>
+                                            </small>
+                                        @endif
+                                        @if (request('seat'))
+                                            <small>
+                                                <p style="font-style: normal !important">{{ request('seat') }} Dewasa</p>
+                                            </small>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6 d-flex align-items-center justify-content-end">
@@ -148,7 +156,7 @@
                                                         Rp{{ $rute->harga }}/org
                                                     </div>
                                                     <div class="col-12">
-                                                        <a href="/pesan"
+                                                        <a href="{{ route('order.index', $rute->id) }}"
                                                             class="btn btn-warning btn-sm rounded-2 text-white">Pesan</a>
                                                     </div>
                                                 </div>

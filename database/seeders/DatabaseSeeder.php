@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             CompanyBusSeeder::class,
             RuteSeeder::class,
-            CityTerminalSeeder::class
+            CityTerminalSeeder::class,
+            OrderSeeder::class
         ]);
 
         $user = User::create([
