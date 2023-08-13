@@ -15,6 +15,8 @@ class Order extends Model
         'passenger_id',
         'rute_id',
         'kode',
+        'passenger_name',
+        'passenger_ktp',
         'seat_code',
     ];
 

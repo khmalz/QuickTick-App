@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('passenger_id')->references('id')->on('passengers')->cascadeOnDelete();
             $table->foreignId('rute_id')->references('id')->on('rutes')->cascadeOnDelete();
             $table->ulid('kode')->unique();
+            $table->string('passenger_name');
+            $table->string('passenger_ktp');
             $table->string('seat_code');
             $table->timestamps();
         });
