@@ -37,7 +37,9 @@
                                 <div class="col-md-6">
                                     <p style="font-style: normal !important">
                                         <strong>{{ request('asal') }}</strong>
-                                        {!! request('tujuan') ? '<i class="bi bi-arrow-right"></i> Bandung</strong>' : null !!}
+                                        @if (request('tujuan'))
+                                            <i class="bi bi-arrow-right"></i> {{ request('tujuan') }}
+                                        @endif
                                     </p>
 
                                     <div class="d-flex gap-4">
@@ -138,7 +140,7 @@
                                 <div class="row gap-3">
                                     <div class="col-12">
                                         <h3>{{ $rute->bus->company->name }}</h3>
-                                        <span>{{ $rute->bus->name }}</span>
+                                        <span>{{ $rute->bus->name }} ({{ $rute->available_seats }} Tersisa)</span>
                                     </div>
                                     <div class="col-12">
                                         <div class="row w-100 align-items-center" style="row-gap: 15px">

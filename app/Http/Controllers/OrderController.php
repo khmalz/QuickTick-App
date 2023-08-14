@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\MixCaseULID;
 use App\Models\Rute;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index(Request $request, Rute $rute)
     {
-        $rute->load('bus');
+        if ($rute->available_seats <= 0) return to_route('home');
+
         $user = $request->user();
 
         return view('pesan', compact('rute', 'user'));

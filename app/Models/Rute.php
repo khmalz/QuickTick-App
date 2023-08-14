@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,22 @@ class Rute extends Model
     ];
 
     protected $with = ['bus'];
+
+    protected $appends = ['order_count', 'available_seats'];
+
+    protected function orderCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->orders()->count(),
+        );
+    }
+
+    protected function availableSeats(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->bus->seat - $this->order_count,
+        );
+    }
 
     public function bus(): BelongsTo
     {
@@ -59,16 +76,8 @@ class Rute extends Model
         );
     }
 
-    public function orderCount()
+    public function scopeWhereAvailableSeats($query)
     {
-        return $this->orders()->count();
-    }
-
-    public function availableSeat()
-    {
-        $seats = $this->bus->seat;
-        $orders = $this->orderCount();
-
-        return $seats - $orders;
+        return $query->whereRelation('bus', 'seat', '>', DB::raw('(SELECT COUNT(*) FROM orders WHERE orders.rute_id = rutes.id)'));
     }
 }
