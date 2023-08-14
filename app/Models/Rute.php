@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Rute extends Model
 {
@@ -26,7 +27,7 @@ class Rute extends Model
 
     protected $with = ['bus'];
 
-    protected $appends = ['order_count', 'available_seats'];
+    protected $appends = ['order_count', 'passenger_count', 'available_seats'];
 
     protected function orderCount(): Attribute
     {
@@ -38,23 +39,21 @@ class Rute extends Model
     protected function availableSeats(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->bus->seat - $this->order_count,
+            get: fn () => $this->bus->seat - $this->passenger_count,
         );
     }
 
-    public function bus(): BelongsTo
+    protected function passengerCount(): Attribute
     {
-        return $this->belongsTo(Bus::class);
+        return Attribute::make(
+            get: fn () => $this->passengerOrders->count(),
+        );
     }
 
-    public function orders(): HasMany
+    public function passengerOrders(): HasManyThrough
     {
-        return $this->hasMany(Order::class);
+        return $this->hasManyThrough(PassengerOrder::class, Order::class);
     }
-
-    protected $casts = [
-        'departure' => 'datetime',
-    ];
 
     /**
      * Get the rute's harga.
@@ -76,8 +75,24 @@ class Rute extends Model
         );
     }
 
+    public function bus(): BelongsTo
+    {
+        return $this->belongsTo(Bus::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    protected $casts = [
+        'departure' => 'datetime',
+    ];
+
     public function scopeWhereAvailableSeats($query)
     {
-        return $query->whereRelation('bus', 'seat', '>', DB::raw('(SELECT COUNT(*) FROM orders WHERE orders.rute_id = rutes.id)'));
+        return $query->whereRelation('bus', 'seat', '>', DB::raw('(SELECT COUNT(*) FROM passenger_orders 
+                          INNER JOIN orders ON passenger_orders.order_id = orders.id 
+                          WHERE orders.rute_id = rutes.id)'));
     }
 }

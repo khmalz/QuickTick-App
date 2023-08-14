@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('passenger_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('passenger_id')->references('id')->on('passengers')->cascadeOnDelete();
-            $table->foreignId('rute_id')->references('id')->on('rutes')->cascadeOnDelete();
+            $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
+            $table->ulid('kode')->unique();
+            $table->string('passenger_name');
+            $table->string('passenger_ktp');
+            $table->string('seat_code');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('passenger_orders');
     }
 };

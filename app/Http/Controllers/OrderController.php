@@ -37,9 +37,12 @@ class OrderController extends Controller
         $jumlahPenumpang = $request->jumlah_penumpang;
         $data = $request->data;
 
+        $order = $rute->orders()->create([
+            'passenger_id' => $request->passenger_id,
+        ]);
+
         for ($i = 0; $i < $jumlahPenumpang; $i++) {
-            $rute->orders()->create([
-                'passenger_id' => $request->passenger_id,
+            $order->passengerOrders()->create([
                 'kode' => MixCaseULID::generate(),
                 'passenger_name' => $data['nama'][$i],
                 'passenger_ktp' => $data['ktp'][$i],
