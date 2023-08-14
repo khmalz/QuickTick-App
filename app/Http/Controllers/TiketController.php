@@ -57,6 +57,10 @@ class TiketController extends Controller
             $query->where('passenger_id', $user->passenger->id);
         }]);
 
-        return view('detail-tiket', compact('user', 'rute'));
+        $passengerOrders = $rute->orders->flatMap(function ($order) {
+            return $order->passengerOrders;
+        });
+
+        return view('detail-tiket', compact('user', 'rute', 'passengerOrders'));
     }
 }

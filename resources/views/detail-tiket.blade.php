@@ -72,7 +72,7 @@
                                     <a href="/update-tiket" class="btn btn-info text-info border-0 bg-transparent">Edit
                                         Detail</a>
                                 </h2>
-                                @foreach ($rute->orders as $passenger)
+                                @foreach ($passengerOrders as $passenger)
                                     <div>
                                         <div class="entry-meta">
                                             <ul>
