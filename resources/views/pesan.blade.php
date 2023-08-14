@@ -93,8 +93,8 @@
                             <div class="entry" id="confirm-kontak">
                                 <h2 class="entry-title fs-4 d-flex justify-content-between">
                                     <p>Detail Kontak (Untuk Tiket)</p>
-                                    <button class="btn btn-info text-info border-0 bg-transparent">Edit
-                                        Detail</button>
+                                    <a href="{{ route('profile.edit') }}" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                        Kontak</a>
                                 </h2>
                                 <div class="entry-content">
                                     <div class="mb-3">
