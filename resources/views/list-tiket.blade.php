@@ -23,29 +23,33 @@
         <section id="testimonials" class="testimonials mt-4">
             <div class="container border border-2 p-2">
                 <div class="row gap-3">
-                    <div class="col-lg-12" data-aos="fade-up">
-                        <div class="testimonial-item border">
-                            <div class="row gap-3">
-                                <div class="col-12">
-                                    <h3>Jackal Holidays</h3>
-                                    <span>Luxury</span>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row w-100 align-items-center">
-                                        <div class="col-md-4">
-                                            Bandung <i class="bi bi-arrow-right"></i> Jakarta
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            3J 35M
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row gap-1 text-end">
-                                                <div class="col-12">
-                                                    Rp100.000/org
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="/detail-tiket"
-                                                        class="btn btn-info btn-sm rounded-2 text-white">Detail</a>
+                    @forelse ($tickets as $ticket)
+                        <div class="col-lg-12" data-aos="fade-up">
+                            <div class="testimonial-item">
+                                <div class="row gap-3">
+                                    <div class="col-12">
+                                        <h3>{{ $ticket->rute->bus->company->name }}</h3>
+                                        <span>{{ $ticket->rute->bus->name }}</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row w-100 align-items-center" style="row-gap: 15px">
+                                            <div class="col-md-4">
+                                                <small>{{ $ticket->rute->rute_awal }} ({{ $ticket->rute->asal }}) <i
+                                                        class="bi bi-arrow-right"></i>
+                                                    {{ $ticket->rute->rute_akhir }} ({{ $ticket->rute->tujuan }})</small>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                {{ $ticket->rute->departure }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row text-md-end gap-1">
+                                                    <div class="col-12">
+                                                        Rp{{ $ticket->rute->harga }}/org
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <a href="{{ route('tiket.show', $ticket->rute->id) }}"
+                                                            class="btn btn-info btn-sm rounded-2 text-white">Detail</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,39 +57,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-item">
-                            <div class="row gap-3">
-                                <div class="col-12">
-                                    <h3>Baraya</h3>
-                                    <span>Reguler</span>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row w-100">
-                                        <div class="col">
-                                            Semarang <i class="bi bi-arrow-right"></i> Surabaya
-                                        </div>
-                                        <div class="col text-center">
-                                            2J 12M
-                                        </div>
-                                        <div class="col">
-                                            <div class="row gap-1 text-end">
-                                                <div class="col-12">
-                                                    Rp95.000/org
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="/detail-tiket"
-                                                        class="btn btn-info btn-sm rounded-2 text-white">Detail</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                    @empty
+                        <div class="col-lg-12" data-aos="fade-up">
+                            <div class="testimonial-item">
+                                <div class="row justify-content-center align-items-center gap-3">
+                                    <div class="col-12">
+                                        <h3 class="fs-4 text-center">Data not found</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>

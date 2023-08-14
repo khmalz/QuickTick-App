@@ -23,7 +23,7 @@
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             @else
                                 <li><a href="{{ route('profile') }}">{{ auth()->user()->name }}</a></li>
-                                <li><a href="{{ route('mytiket') }}">My Tiket</a></li>
+                                <li><a href="{{ route('tiket.list') }}">My Tiket</a></li>
                             @endrole
                             <li>
                                 <a href="/logout"

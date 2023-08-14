@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rute;
+use App\Models\Order;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
 
@@ -33,5 +34,29 @@ class TiketController extends Controller
         $terminals = Terminal::with('city')->get();
 
         return view('search', compact('terminals', 'rutes'));
+    }
+
+    public function all(Request $request)
+    {
+        $user = $request->user()->load('passenger');
+        $uniqueOrderIds = Order::selectRaw('MIN(id) as min_id')
+            ->where('passenger_id', $user->passenger->id)
+            ->groupBy('rute_id');
+
+        $tickets = Order::with('rute', 'rute.bus.company')->whereIn('id', $uniqueOrderIds)
+            ->get();
+
+        return view('list-tiket', compact('tickets'));
+    }
+
+    public function show(Request $request, Rute $rute)
+    {
+        $user = $request->user();
+
+        $rute->load(['orders' => function ($query) use ($user) {
+            $query->where('passenger_id', $user->passenger->id);
+        }]);
+
+        return view('detail-tiket', compact('user', 'rute'));
     }
 }

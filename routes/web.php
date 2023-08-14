@@ -28,8 +28,6 @@ Route::get('/search', [TiketController::class, 'index'])->name('search_tiket');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/contact', fn () => view('contact'))->name('contact');
 
-Route::get('/my-tiket', fn () => view('list-tiket'))->name('mytiket');
-Route::get('/detail-tiket', fn () => view('detail-tiket'))->name('detailTiket');
 Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
 Route::get('/payment', fn () => view('payment'))->name('payment');
 Route::get('/success', fn () => view('success-payment'))->name('success');
@@ -37,8 +35,13 @@ Route::get('/success', fn () => view('success-payment'))->name('success');
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
 Route::middleware('role:Penumpang')->group(function () {
+    Route::get('my-tiket', [TiketController::class, 'all'])->name('tiket.list');
+
+    Route::get('detail-tiket/{rute}', [TiketController::class, 'show'])->name('tiket.show');
+
     Route::get('pesan/{rute}', [OrderController::class, 'index'])->name('order.index');
     Route::post('pesan/{rute}', [OrderController::class, 'store'])->name('order.store');
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/profile-update', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::match(['patch', 'put'], '/profile-update', [ProfileController::class, 'update'])->name('profile.update');
