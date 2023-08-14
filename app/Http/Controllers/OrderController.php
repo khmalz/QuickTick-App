@@ -32,9 +32,22 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Rute $rute)
     {
-        //
+        $jumlahPenumpang = $request->jumlah_penumpang;
+        $data = $request->data;
+
+        for ($i = 0; $i < $jumlahPenumpang; $i++) {
+            $rute->orders()->create([
+                'passenger_id' => $request->passenger_id,
+                'kode' => MixCaseULID::generate(),
+                'passenger_name' => $data['nama'][$i],
+                'passenger_ktp' => $data['ktp'][$i],
+                'seat_code' => "10"
+            ]);
+        }
+
+        return "Success"; // KE PAYMENT
     }
 
     /**

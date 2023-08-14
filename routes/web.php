@@ -38,6 +38,7 @@ Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('con
 
 Route::middleware('role:Penumpang')->group(function () {
     Route::get('pesan/{rute}', [OrderController::class, 'index'])->name('order.index');
+    Route::post('pesan/{rute}', [OrderController::class, 'store'])->name('order.store');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/profile-update', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::match(['patch', 'put'], '/profile-update', [ProfileController::class, 'update'])->name('profile.update');
