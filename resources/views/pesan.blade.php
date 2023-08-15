@@ -93,7 +93,8 @@
                             <div class="entry" id="confirm-kontak">
                                 <h2 class="entry-title fs-4 d-flex justify-content-between">
                                     <p>Detail Kontak (Untuk Tiket)</p>
-                                    <a href="{{ route('profile.edit') }}" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    <a href="{{ route('profile.edit') }}"
+                                        class="btn btn-info text-info border-0 bg-transparent">Edit
                                         Kontak</a>
                                 </h2>
                                 <div class="entry-content">
@@ -139,13 +140,13 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                {{-- <button class="btn btn-warning text-white"
-                                    onclick="confirm('apakah sudah yakin?') ? location.href='/payment' : null">Continue
-                                    to
-                                    Payment</button> --}}
                                 <input type="hidden" name="passenger_id" value="{{ $user->passenger->id }}">
                                 <input type="hidden" name="rute_id" value="{{ $rute->id }}">
-                                <button type="submit" class="btn btn-warning text-white">Create Order</button>
+                                <button type="submit" class="btn">Create Order</button>
+                                {{-- <button class="btn btn-warning text-white" type="submit"
+                                    onclick="return confirm('apakah sudah yakin?')">Continue
+                                    to
+                                    Payment</button> --}}
                             </div>
                         </div>
 

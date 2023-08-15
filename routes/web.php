@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\PetugasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TiketController;
 
 /*
@@ -29,15 +30,17 @@ Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/contact', fn () => view('contact'))->name('contact');
 
 Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
-Route::get('/payment', fn () => view('payment'))->name('payment');
-Route::get('/success', fn () => view('success-payment'))->name('success');
 
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
 Route::middleware('role:Penumpang')->group(function () {
     Route::get('my-tiket', [TiketController::class, 'all'])->name('tiket.list');
-
     Route::get('detail-tiket/{rute}', [TiketController::class, 'show'])->name('tiket.show');
+
+    Route::get('payment/{order}', [PaymentController::class, 'index'])->name('payment.index');
+    Route::post('payment/{order}', [PaymentController::class, 'store'])->name('payment.store');
+
+    Route::get('success/{order}', [PaymentController::class, 'success'])->name('payment.success');
 
     Route::get('pesan/{rute}', [OrderController::class, 'index'])->name('order.index');
     Route::post('pesan/{rute}', [OrderController::class, 'store'])->name('order.store');

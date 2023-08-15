@@ -98,20 +98,24 @@
                                 </h2>
                                 <div class="entry-content">
                                     <div class="row">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
-                                            <div class="d-flex flex-column align-items-center">
-                                                <label for="phone" class="form-label text-danger mb-0 pb-0">Belum
-                                                    Dibayar</label>
-                                                <small>
-                                                    <a href="/payment" class="text-secondary">Bayar?</a>
-                                                </small>
+                                        @if ($payment)
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
+                                                <label for="phone" class="form-label text-success">Sudah Dibayar</label>
                                             </div>
-                                        </div>
-                                        {{-- <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
-                                            <label for="phone" class="form-label text-success">Sudah Dibayar</label>
-                                        </div> --}}
+                                        @else
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
+                                                <div class="d-flex flex-column align-items-center">
+                                                    <label for="phone" class="form-label text-danger mb-0 pb-0">Belum
+                                                        Dibayar</label>
+                                                    <small>
+                                                        <a href="{{ route('payment.index', $rute->order->id) }}"
+                                                            class="text-secondary">Bayar?</a>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
