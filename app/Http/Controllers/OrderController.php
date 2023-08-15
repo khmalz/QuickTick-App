@@ -18,6 +18,10 @@ class OrderController extends Controller
 
         $user = $request->user();
 
+        $rute->load(['orders' => function ($query) use ($user) {
+            $query->where('passenger_id', $user->passenger->id);
+        }]);
+
         return view('pesan', compact('rute', 'user'));
     }
 

@@ -24,11 +24,21 @@
                 <form action="{{ route('order.store', $rute->id) }}" method="POST">
                     @csrf
                     <div class="row">
+                        @if (count($rute->orders) > 0)
+                            <div class="entries">
+                                <div class="alert alert-info d-flex justify-content-between" role="alert">
+                                    Kamu sudah memesan Tiket Ini!
+                                    <a href="{{ route('tiket.show', $rute->id) }}" class="text-dark">Lihat tiket!</a>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="col-lg-8 entries" id="form-pesan">
                             <div class="entry" id="form-kontak">
                                 <h2 class="entry-title fs-4 d-flex justify-content-between">
                                     <p>Detail Kontak (Untuk Tiket)</p>
-                                    <a href="/profile-update" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    <a href="{{ route('profile.edit') }}"
+                                        class="btn btn-info text-info border-0 bg-transparent">Edit
                                         Kontak</a>
                                 </h2>
                                 <div class="entry-content">
@@ -85,7 +95,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary" type="button" id="buttonContinue">Continue</button>
+                                <button class="btn btn-primary" type="button"
+                                    {{ count($rute->orders) > 0 ? 'disabled' : null }}
+                                    id="{{ count($rute->orders) <= 0 ? 'buttonContinue' : null }}">Continue</button>
                             </div>
                         </div>
 
@@ -121,7 +133,8 @@
                             <div class="entry" id="confirm-penumpang">
                                 <h2 class="entry-title fs-4 d-flex justify-content-between">
                                     <p>Detail Penumpang</p>
-                                    <button onclick="showForm()" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    <button onclick="showForm()"
+                                        class="btn btn-info text-info border-0 bg-transparent">Edit
                                         Detail</button>
                                 </h2>
                                 <div id="penumpangContainer"></div>
