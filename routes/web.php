@@ -29,13 +29,13 @@ Route::get('/search', [TiketController::class, 'index'])->name('search_tiket');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/contact', fn () => view('contact'))->name('contact');
 
-Route::get('/update-tiket', fn () => view('update-tiket'))->name('updateTiket');
-
 Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('contact.send');
 
 Route::middleware('role:Penumpang')->group(function () {
     Route::get('my-tiket', [TiketController::class, 'all'])->name('tiket.list');
     Route::get('detail-tiket/{rute}', [TiketController::class, 'show'])->name('tiket.show');
+    Route::get('update-tiket/{rute}', [OrderController::class, 'edit'])->name('tiket.edit');
+    Route::patch('update-tiket/{rute}', [OrderController::class, 'update'])->name('tiket.update');
 
     Route::get('payment/{order}', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('payment/{order}', [PaymentController::class, 'store'])->name('payment.store');
