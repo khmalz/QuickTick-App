@@ -142,11 +142,10 @@
                             <div class="d-flex justify-content-end">
                                 <input type="hidden" name="passenger_id" value="{{ $user->passenger->id }}">
                                 <input type="hidden" name="rute_id" value="{{ $rute->id }}">
-                                <button type="submit" class="btn">Create Order</button>
-                                {{-- <button class="btn btn-warning text-white" type="submit"
+                                <button class="btn btn-warning text-white" type="submit"
                                     onclick="return confirm('apakah sudah yakin?')">Continue
                                     to
-                                    Payment</button> --}}
+                                    Payment</button>
                             </div>
                         </div>
 

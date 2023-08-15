@@ -50,7 +50,7 @@ class OrderController extends Controller
             ]);
         }
 
-        return "Success"; // KE PAYMENT
+        return to_route('payment.index', $order->id);
     }
 
     /**
