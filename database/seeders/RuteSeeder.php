@@ -119,7 +119,7 @@ class RuteSeeder extends Seeder
                                 'tujuan' => $tujuan,
                                 'rute_akhir' => $ruteAkhir,
                                 'harga' => 2003000,
-                                'departure' => fake()->dateTimeBetween('now', '+1 month')
+                                'departure' => fake()->dateTimeBetween('now', '+2 week')
                             ]);
                         }
                     }

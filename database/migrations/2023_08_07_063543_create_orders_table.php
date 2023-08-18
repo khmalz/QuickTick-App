@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('passenger_id')->references('id')->on('passengers')->cascadeOnDelete();
             $table->foreignId('rute_id')->references('id')->on('rutes')->cascadeOnDelete();
+            $table->enum('status', ['unverified', 'verified'])->default('unverified');
             $table->timestamps();
         });
     }

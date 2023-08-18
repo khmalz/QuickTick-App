@@ -6,6 +6,7 @@ use App\Models\Bus;
 use App\Models\Company;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use App\Helpers\GenerateInitial;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CompanyBusSeeder extends Seeder
@@ -37,8 +38,8 @@ class CompanyBusSeeder extends Seeder
             'Super Executive Sleeper',
         ];
 
-        $initialCompanies = \App\Helpers\GenerateInitial::generate($companies);
-        $initialBuses = \App\Helpers\GenerateInitial::generate($busTypes);
+        $initialCompanies = GenerateInitial::generate($companies);
+        $initialBuses = GenerateInitial::generate($busTypes);
 
         $Buses = [];
 
@@ -66,7 +67,7 @@ class CompanyBusSeeder extends Seeder
                 "company_id" => $bus["company"],
                 "kode" => $bus["kode"],
                 "name" => $bus["name"],
-                "seat" => 10
+                "seat" => 35
             ]);
         }
     }
