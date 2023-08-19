@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
         'bus' => 'bus'
     ]);
     Route::resource('rute', RuteController::class);
+    Route::get('ticket/unverified', [\App\Http\Controllers\Admin\TiketController::class, 'indexUnverified'])->name('ticket.unverified');
+    Route::get('ticket/verified', [\App\Http\Controllers\Admin\TiketController::class, 'indexVerified'])->name('ticket.verified');
+    Route::get('ticket/{order}', [\App\Http\Controllers\Admin\TiketController::class, 'show'])->name('ticket.show');
 });
 
 require __DIR__ . '/auth.php';

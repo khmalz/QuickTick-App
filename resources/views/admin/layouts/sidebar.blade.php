@@ -45,8 +45,8 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
+                 <li class="nav-item {{ request()->routeIs('ticket.*') ? 'menu-open' : '' }}">
+                     <a href="#" class="nav-link {{ request()->routeIs('ticket.*') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-ticket-alt text-primary"></i>
                          <p>
                              Ticket
@@ -55,15 +55,17 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="{{ url('/ticket/belum') }}" class="nav-link">
+                             <a href="{{ route('ticket.unverified') }}"
+                                 class="nav-link {{ request()->routeIs('ticket.unverified*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Belum Verifikasi
-                                     <span class="badge badge-info right">6</span>
+                                     <span class="badge badge-info right">{{ $total_order_unverified }}</span>
                                  </p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{ url('/ticket/sudah') }}" class="nav-link">
+                             <a href="{{ route('ticket.verified') }}"
+                                 class="nav-link {{ request()->routeIs('ticket.verified*') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Sudah Verifikasi</p>
                              </a>

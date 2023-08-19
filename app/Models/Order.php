@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,5 +36,31 @@ class Order extends Model
     public function passengerOrders(): HasMany
     {
         return $this->hasMany(PassengerOrder::class);
+    }
+
+    public function scopeWhereStatus($query, string $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    public function scopeByAsal($query, string $asal)
+    {
+        return $query->whereHas('rute', function ($query) use ($asal) {
+            $query->where('asal', $asal);
+        });
+    }
+
+    public function scopeByTujuan($query, string $tujuan)
+    {
+        return $query->whereHas('rute', function ($query) use ($tujuan) {
+            $query->where('tujuan', $tujuan);
+        });
+    }
+
+    public function scopeByDeparture($query, Carbon|string $departure)
+    {
+        return $query->whereHas('rute', function ($query) use ($departure) {
+            $query->whereDate('departure', $departure);
+        });
     }
 }
