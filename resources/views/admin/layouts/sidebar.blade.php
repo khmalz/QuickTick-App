@@ -37,7 +37,7 @@
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                  data-accordion="false">
                  <li class="nav-item">
-                     <a href="{{ url('/dashboard') }}"
+                     <a href="{{ route('dashboard') }}"
                          class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                          <i class="nav-icon fas fa-scroll text-teal"></i>
                          <p>

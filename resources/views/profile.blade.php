@@ -32,7 +32,7 @@
                                             ({{ $user->passenger->gender == 'L' ? 'Laki-laki' : 'Perempuan' }})</p>
                                         <p style="font-size: 0.9rem" class="fw-medium">{{ $user->email }}</p>
                                     </div>
-                                    <a href="/profile-update" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    <a href="{{ route('profile.edit') }}" class="btn btn-info text-info border-0 bg-transparent">Edit
                                         Profile</a>
                                 </h2>
                                 <div class="entry-content">

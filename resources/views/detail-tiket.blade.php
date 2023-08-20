@@ -40,9 +40,10 @@
                                 </div>
                             </div>
                             <div class="entry" id="confirm-kontak">
-                                <h2 class="entry-title fs-4 d-flex justify-content-between">
+                                <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Kontak (Untuk Tiket)</p>
-                                    <a href="/profile-update" class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    <a href="{{ route('profile.edit') }}"
+                                        class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Kontak</a>
                                 </h2>
                                 <div class="entry-content">
@@ -67,10 +68,10 @@
                                 </div>
                             </div>
                             <div class="entry" id="confirm-penumpang">
-                                <h2 class="entry-title fs-4 d-flex justify-content-between">
+                                <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Penumpang</p>
                                     <a href="{{ route('tiket.edit', $rute->id) }}"
-                                        class="btn btn-info text-info border-0 bg-transparent">Edit
+                                        class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Detail</a>
                                 </h2>
                                 @foreach ($passengerOrders as $passenger)

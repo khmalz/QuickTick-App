@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Pesan</h2>
                     <ol>
-                        <li><a href="{{ url('index.html') }}">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Pesan</li>
                     </ol>
                 </div>
@@ -24,10 +24,10 @@
                 <div class="row">
                     <div class="col-lg-8 entries">
                         <div class="entry" id="form-kontak">
-                            <h2 class="entry-title fs-4 d-flex justify-content-between">
+                            <h2 class="entry-title fs-4 d-md-flex d-block justify-content-between">
                                 <p>Detail Kontak (Untuk Tiket)</p>
                                 <a href="{{ route('profile.edit') }}"
-                                    class="btn btn-info text-info border-0 bg-transparent">Edit
+                                    class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                     Kontak</a>
                             </h2>
                             <div class="entry-content">

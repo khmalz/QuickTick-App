@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Pesan</h2>
                     <ol>
-                        <li><a href="{{ url('index.html') }}">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Pesan</li>
                     </ol>
                 </div>
@@ -103,10 +103,10 @@
 
                         <div class="col-lg-8 entries" id="confirm-pesan" style="display: none">
                             <div class="entry" id="confirm-kontak">
-                                <h2 class="entry-title fs-4 d-flex justify-content-between">
+                                <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Kontak (Untuk Tiket)</p>
                                     <a href="{{ route('profile.edit') }}"
-                                        class="btn btn-info text-info border-0 bg-transparent">Edit
+                                        class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Kontak</a>
                                 </h2>
                                 <div class="entry-content">
@@ -131,10 +131,10 @@
                                 </div>
                             </div>
                             <div class="entry" id="confirm-penumpang">
-                                <h2 class="entry-title fs-4 d-flex justify-content-between">
+                                <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Penumpang</p>
                                     <button onclick="showForm()"
-                                        class="btn btn-info text-info border-0 bg-transparent">Edit
+                                        class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Detail</button>
                                 </h2>
                                 <div id="penumpangContainer"></div>
@@ -162,8 +162,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4">
-                            <div class="sidebar">
+                        <div class="col-lg-4 order-md-last order-first">
+                            <div class="sidebar ms-md-3 ms-0">
                                 <div class="sidebar-item categories mb-2">
                                     <p class="fw-semibold">{{ $rute->rute_awal }} ({{ $rute->asal }}) <i
                                             class="bi bi-arrow-right"></i> {{ $rute->rute_akhir }} ({{ $rute->tujuan }})
