@@ -34,14 +34,14 @@
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">Nama Lengkap</label>
                                     <input type="text" class="form-control" disabled id="fullName"
-                                        value="{{ $user->name }}">
+                                        value="{{ $order->passenger->user->name }}">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="phone" class="form-label">Nomer Telepon</label>
                                             <input type="tel" disabled class="form-control" id="phone"
-                                                value="{{ $user->passenger->telephone }}">
+                                                value="{{ $order->passenger->telephone }}">
                                             <small>
                                                 <div id="phoneHelpBlock" class="form-text">
                                                     contoh 628712738122
@@ -53,7 +53,7 @@
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" disabled class="form-control" id="email"
-                                                value="{{ $user->email }}">
+                                                value="{{ $order->passenger->user->email }}">
                                             <small>
                                                 <div id="emailHelpBlock" class="form-text">
                                                     contoh email@example.com
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('tiket.update', $rute->id) }}" method="POST">
+                        <form action="{{ route('tiket.update', $order->id) }}" method="POST">
                             @csrf
                             @method('patch')
                             <div class="entry" id="form-penumpang">
@@ -72,7 +72,7 @@
                                     <p>Detail Penumpang</p>
                                 </h2>
                                 <div id="deleted-id-input" hidden></div>
-                                @foreach ($rute->order->passengerOrders as $passenger)
+                                @foreach ($order->passengerOrders as $passenger)
                                     <div id="passenger-{{ $passenger->id }}" class="passenger-container"
                                         data-passenger-id="{{ $passenger->id }}">
                                         <div class="entry-meta">
@@ -114,15 +114,16 @@
                     <div class="col-lg-4">
                         <div class="sidebar">
                             <div class="sidebar-item categories mb-2">
-                                <p class="fw-semibold">{{ $rute->rute_awal }} ({{ $rute->asal }}) <i
-                                        class="bi bi-arrow-right"></i> {{ $rute->rute_akhir }} ({{ $rute->tujuan }})
+                                <p class="fw-semibold">{{ $order->rute->rute_awal }} ({{ $order->rute->asal }}) <i
+                                        class="bi bi-arrow-right"></i> {{ $order->rute->rute_akhir }}
+                                    ({{ $order->rute->tujuan }})
                                 </p>
                                 <small>
-                                    <p>{{ $rute->bus->kode }} ({{ $rute->bus->name }})</p>
+                                    <p>{{ $order->rute->bus->kode }} ({{ $order->rute->bus->name }})</p>
                                 </small>
                             </div>
                             <div class="sidebar-item tags">
-                                <p>{{ $rute->departure }}</p>
+                                <p>{{ $order->rute->departure }}</p>
                             </div>
                         </div>
                     </div>

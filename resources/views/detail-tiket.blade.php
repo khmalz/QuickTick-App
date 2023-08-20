@@ -26,16 +26,27 @@
                     <div class="col-lg-12" data-aos="fade-up">
                         <div class="rounded border p-3">
                             <div class="entry" id="detail-tiket">
+                                <div class="entry-title">
+                                    @if ($order->status == 'unverified')
+                                        <span class="btn btn-sm"
+                                            style="border: 1px solid red; color: red; cursor: default;">Unverified</span>
+                                    @else
+                                        <span class="btn btn-sm"
+                                            style="border: 1px solid green; color: green; cursor: default;">Verified</span>
+                                    @endif
+                                </div>
                                 <h2 class="entry-title fs-4">
-                                    <p class="fw-semibold">{{ $rute->rute_awal }} ({{ $rute->asal }}) <i
-                                            class="bi bi-arrow-right"></i> {{ $rute->rute_akhir }} ({{ $rute->tujuan }})
+                                    <p class="fw-semibold">{{ $order->rute->rute_awal }} ({{ $order->rute->asal }}) <i
+                                            class="bi bi-arrow-right"></i> {{ $order->rute->rute_akhir }}
+                                        ({{ $order->rute->tujuan }})
                                     </p>
-                                    <p class="fw-medium fs-6">{{ $rute->bus->kode }} ({{ $rute->bus->name }})</p>
+                                    <p class="fw-medium fs-6">{{ $order->rute->bus->kode }} ({{ $order->rute->bus->name }})
+                                    </p>
                                 </h2>
                                 <div class="entry-content">
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Tanggal</label>
-                                        <p class="fw-semibold">{{ $rute->departure }}</p>
+                                        <p class="fw-semibold">{{ $order->rute->departure }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,20 +59,22 @@
                                 </h2>
                                 <div class="entry-content">
                                     <div class="mb-3">
-                                        <p class="fw-bold fs-6" id="fullNameConfirm">{{ $user->name }}</p>
+                                        <p class="fw-bold fs-6" id="fullNameConfirm">{{ $order->passenger->user->name }}</p>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="phone" class="form-label">Nomer Telepon</label>
-                                                <p class="fw-semibold" id="phoneConfirm">{{ $user->passenger->telephone }}
+                                                <p class="fw-semibold" id="phoneConfirm">
+                                                    {{ $order->passenger->telephone }}
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Email</label>
-                                                <p class="fw-semibold" id="emailConfirm">{{ $user->email }}</p>
+                                                <p class="fw-semibold" id="emailConfirm">
+                                                    {{ $order->passenger->user->email }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -70,11 +83,11 @@
                             <div class="entry" id="confirm-penumpang">
                                 <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Penumpang</p>
-                                    <a href="{{ route('tiket.edit', $rute->id) }}"
+                                    <a href="{{ route('tiket.edit', $order->id) }}"
                                         class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Detail</a>
                                 </h2>
-                                @foreach ($passengerOrders as $passenger)
+                                @foreach ($order->passengerOrders as $passenger)
                                     <div>
                                         <div class="entry-meta">
                                             <ul>
@@ -100,19 +113,19 @@
                                 </h2>
                                 <div class="entry-content">
                                     <div class="row">
-                                        @if ($payment)
+                                        @if ($order->payment)
                                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
+                                                <p class="fw-semibold text-danger fs-4">Rp{{ $order->rute->harga }}</p>
                                                 <label for="phone" class="form-label text-success">Sudah Dibayar</label>
                                             </div>
                                         @else
                                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <p class="fw-semibold text-danger fs-4">Rp{{ $rute->harga }}</p>
+                                                <p class="fw-semibold text-danger fs-4">Rp{{ $order->rute->harga }}</p>
                                                 <div class="d-flex flex-column align-items-center">
                                                     <label for="phone" class="form-label text-danger mb-0 pb-0">Belum
                                                         Dibayar</label>
                                                     <small>
-                                                        <a href="{{ route('payment.index', $rute->order->id) }}"
+                                                        <a href="{{ route('payment.index', $order->id) }}"
                                                             class="text-secondary">Bayar?</a>
                                                     </small>
                                                 </div>

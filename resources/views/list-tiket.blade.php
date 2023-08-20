@@ -47,7 +47,7 @@
                                                         Rp{{ $ticket->rute->harga }}/org
                                                     </div>
                                                     <div class="col-12">
-                                                        <a href="{{ route('tiket.show', $ticket->rute->id) }}"
+                                                        <a href="{{ route('tiket.show', $ticket->id) }}"
                                                             class="btn btn-info btn-sm rounded-2 text-white">Detail</a>
                                                     </div>
                                                 </div>

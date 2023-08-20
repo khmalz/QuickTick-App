@@ -70,29 +70,17 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, Rute $rute)
+    public function edit(Order $order)
     {
-        $user = $request->user();
+        $order->load('rute.bus', 'payment', 'passenger.user', 'passengerOrders');
 
-        $rute->load(['orders' => function ($query) use ($user) {
-            $query->where('passenger_id', $user->passenger->id);
-        }]);
-
-        $rute->order = $rute->orders->first();
-
-        abort_if(!$rute->order, 404);
-
-        $passengerOrders = $rute->orders->flatMap(function ($order) {
-            return $order->passengerOrders;
-        });
-
-        return view('update-tiket', compact('user', 'rute', 'passengerOrders'));
+        return view('update-tiket', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rute $rute)
+    public function update(Request $request, Order $order)
     {
         DB::beginTransaction();
 
@@ -124,11 +112,11 @@ class OrderController extends Controller
 
             DB::commit();
 
-            return to_route('tiket.show', $rute->id)->with('success', 'Changes have been saved successfully');
+            return to_route('tiket.show', $order->id)->with('success', 'Changes have been saved successfully');
         } catch (\Exception $e) {
             DB::rollback();
 
-            return to_route('tiket.show', $rute->id)->with('error', 'Failled to update a order');
+            return to_route('tiket.show', $order->id)->with('error', 'Failled to update a order');
         }
     }
 

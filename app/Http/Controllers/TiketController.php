@@ -49,29 +49,10 @@ class TiketController extends Controller
         return view('list-tiket', compact('tickets'));
     }
 
-    public function show(Request $request, Rute $rute)
+    public function show(Request $request, Order $order)
     {
-        $user = $request->user();
+        $order->load('rute.bus', 'payment', 'passenger.user', 'passengerOrders');
 
-        $rute->load(['orders' => function ($query) use ($user) {
-            $query->where('passenger_id', $user->passenger->id);
-        }]);
-
-        $rute->order = $rute->orders->first();
-
-        abort_if(!$rute->order, 404);
-
-        $passengerOrders = $rute->orders->flatMap(function ($order) {
-            return $order->passengerOrders;
-        });
-
-        $payment = null;
-
-        if ($rute->order->payment) {
-            // Mengambil informasi Payment berdasarkan order_id pada $rute->order
-            $payment = $rute->order->payment;
-        }
-
-        return view('detail-tiket', compact('user', 'rute', 'passengerOrders', 'payment'));
+        return view('detail-tiket', compact('order'));
     }
 }

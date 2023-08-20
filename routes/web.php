@@ -33,9 +33,9 @@ Route::post('/contact-send', [SendMailController::class, 'sendMail'])->name('con
 
 Route::middleware('role:Penumpang')->group(function () {
     Route::get('my-tiket', [TiketController::class, 'all'])->name('tiket.list');
-    Route::get('detail-tiket/{rute}', [TiketController::class, 'show'])->name('tiket.show');
-    Route::get('update-tiket/{rute}', [OrderController::class, 'edit'])->name('tiket.edit');
-    Route::patch('update-tiket/{rute}', [OrderController::class, 'update'])->name('tiket.update');
+    Route::get('detail-tiket/{order}', [TiketController::class, 'show'])->name('tiket.show');
+    Route::get('update-tiket/{order}', [OrderController::class, 'edit'])->name('tiket.edit');
+    Route::patch('update-tiket/{order}', [OrderController::class, 'update'])->name('tiket.update');
 
     Route::get('payment/{order}', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('payment/{order}', [PaymentController::class, 'store'])->name('payment.store');
