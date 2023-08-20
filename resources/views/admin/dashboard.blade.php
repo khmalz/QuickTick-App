@@ -14,7 +14,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Petugas</span>
-                                    <span class="info-box-number">1</span>
+                                    <span class="info-box-number">{{ $petugasCount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +26,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Tiket Belum Verifikasi</span>
                                 <span class="info-box-number">
-                                    14
+                                    {{ $orderUnverifiedCount }}
                                 </span>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Bis</span>
                                 <span class="info-box-number">
-                                    42
+                                    {{ $busCount }}
                                 </span>
                             </div>
                         </div>
