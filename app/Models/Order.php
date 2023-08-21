@@ -16,6 +16,7 @@ class Order extends Model
     protected $fillable = [
         'passenger_id',
         'rute_id',
+        'status'
     ];
 
     public function rute(): BelongsTo

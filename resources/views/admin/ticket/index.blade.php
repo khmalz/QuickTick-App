@@ -169,7 +169,7 @@
 
         $("#orderTable").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["excel", "pdf"],
             "stateSave": true,

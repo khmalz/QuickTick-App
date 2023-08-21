@@ -21,7 +21,6 @@ class TiketController extends Controller
         $orders = Order::with('rute', 'passenger.user')
             ->withCount('passengerOrders')
             ->whereStatus('unverified')
-            ->byDeparture(now())
             ->when($asal ?? false, function ($query) use ($asal) {
                 $query->byAsal($asal);
             })
@@ -30,6 +29,8 @@ class TiketController extends Controller
             })
             ->when($departure ?? false, function ($query) use ($departure) {
                 $query->byDeparture($departure);
+            }, function ($query) {
+                $query->byDeparture(now());
             })
             ->get();
         $cities = City::all();
@@ -70,7 +71,11 @@ class TiketController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order->load('rute.bus', 'passenger.user', 'passengerOrders', 'payment');
+
+        // return $order;
+
+        return view('admin.ticket.detail', compact('order'));
     }
 
     /**
@@ -86,6 +91,10 @@ class TiketController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order->update([
+            'status' => $request->status,
+        ]);
+
+        return to_route('ticket.show', $order->id)->with('success', 'Successfully verification a ticket order');
     }
 }

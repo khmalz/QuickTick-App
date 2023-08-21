@@ -16,6 +16,8 @@ class Payment extends Model
         'method',
     ];
 
+    protected $with = ['va', 'card', 'wallet'];
+
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
