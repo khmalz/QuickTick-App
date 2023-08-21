@@ -49,12 +49,14 @@ class OrderController extends Controller
             'passenger_id' => $request->passenger_id,
         ]);
 
+        $passengerCount = $rute->passenger_count;
+
         for ($i = 0; $i < $jumlahPenumpang; $i++) {
             $order->passengerOrders()->create([
                 'kode' => MixCaseULID::generate(),
                 'passenger_name' => $data['nama'][$i],
                 'passenger_ktp' => $data['ktp'][$i],
-                'seat_code' => "10"
+                'seat_code' => ++$passengerCount
             ]);
         }
 

@@ -133,7 +133,7 @@
                             <div class="entry" id="confirm-penumpang">
                                 <h2 class="entry-title fs-4 d-md-flex justify-content-between d-block">
                                     <p>Detail Penumpang</p>
-                                    <button onclick="showForm()"
+                                    <button type="button" onclick="showForm()"
                                         class="btn btn-info text-info border-0 bg-transparent p-0">Edit
                                         Detail</button>
                                 </h2>
