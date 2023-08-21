@@ -18,18 +18,25 @@ class TiketController extends Controller
         $rute_awal = $request->asal;
         $rute_akhir = $request->tujuan;
         $departure = $request->departure;
+        $seat = $request->seat;
 
         $rutes = Rute::with('bus.company')
             ->where('rute_awal', $rute_awal)
-            ->when($rute_akhir, function ($query) use ($rute_akhir) {
+            ->when($rute_akhir ?? false, function ($query) use ($rute_akhir) {
                 $query->where('rute_akhir', $rute_akhir);
             })
-            ->when($departure, function ($query) use ($departure) {
+            ->when($departure ?? false, function ($query) use ($departure) {
                 $query->whereDate('departure', $departure);
+            }, function ($query) {
+                $query->whereDate('departure', '>=', now());
             })
             ->whereAvailableSeats()
             ->orderBy('departure')
             ->get();
+
+        $rutes = $rutes->filter(function ($rute) use ($seat) {
+            return $rute->available_seats >= $seat;
+        });
 
         $terminals = Terminal::with('city')->get();
 

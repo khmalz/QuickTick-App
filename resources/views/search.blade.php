@@ -71,56 +71,62 @@
                                         <h1 class="modal-title fs-5" id="changeSearchLabel">Pesan Tiket</h1>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="dari" class="form-label">Dari:</label>
-                                                <select class="form-select" id="select2-asal"
-                                                    data-placeholder="Pilih Asal Keberangkatan" name="asal">
-                                                    <option></option>
-                                                    @foreach ($terminals as $terminal)
-                                                        <option {{ request('asal') == $terminal->name ? 'selected' : null }}
-                                                            value="{{ $terminal->name }}">{{ $terminal->name }} -
-                                                            {{ $terminal->city->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                        <form action="{{ route('search_tiket') }}" method="GET">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label for="dari" class="form-label">Dari:</label>
+                                                    <select class="form-select" id="select2-asal"
+                                                        data-placeholder="Pilih Asal Keberangkatan" name="asal" required>
+                                                        <option></option>
+                                                        @foreach ($terminals as $terminal)
+                                                            <option
+                                                                {{ request('asal') == $terminal->name ? 'selected' : null }}
+                                                                value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                                {{ $terminal->city->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="ke" class="form-label">Ke:</label>
+                                                    <select class="form-select" id="select2-tujuan"
+                                                        data-placeholder="Pilih Tujuan Keberangkatan" name="tujuan">
+                                                        <option></option>
+                                                        @foreach ($terminals as $terminal)
+                                                            <option
+                                                                {{ request('tujuan') == $terminal->name ? 'selected' : null }}
+                                                                value="{{ $terminal->name }}">{{ $terminal->name }} -
+                                                                {{ $terminal->city->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="berangkat" class="form-label">Berangkat:</label>
+                                                    <input type="date" name="departure" class="form-control"
+                                                        id="berangkat" value="{{ request('departure') }}"
+                                                        min="{{ date('Y-m-d') }}">
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="ke" class="form-label">Ke:</label>
-                                                <select class="form-select" id="select2-tujuan"
-                                                    data-placeholder="Pilih Tujuan Keberangkatan" name="tujuan">
-                                                    <option></option>
-                                                    @foreach ($terminals as $terminal)
-                                                        <option
-                                                            {{ request('tujuan') == $terminal->name ? 'selected' : null }}
-                                                            value="{{ $terminal->name }}">{{ $terminal->name }} -
-                                                            {{ $terminal->city->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="row mb-3">
+                                                <div class="col-md-8">
+                                                    <label for="penumpang" class="form-label">Penumpang:</label>
+                                                    <select class="form-select" name="seat" id="penumpang">
+                                                        <option disabled selected>Pilih Jumlah Penumpang</option>
+                                                        @for ($dewasa = 1; $dewasa <= 5; $dewasa++)
+                                                            <option {{ request('seat') == $dewasa ? 'selected' : null }}
+                                                                value="{{ $dewasa }}">{{ $dewasa }} Dewasa
+                                                            </option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div
+                                                    class="col-md-4 d-flex align-items-end justify-content-end mt-md-0 mt-3">
+                                                    <button type="submit" class="btn btn-success rounded-3">
+                                                        <i class="bi bi-search"></i>
+                                                        <span>Cari Tiket</span>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="berangkat" class="form-label">Berangkat:</label>
-                                                <input type="date" class="form-control" id="berangkat" required
-                                                    value="{{ request('departure') }}" min="{{ date('Y-m-d') }}">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-8">
-                                                <label for="penumpang" class="form-label">Penumpang:</label>
-                                                <select class="form-select" id="penumpang" required>
-                                                    <option disabled selected>Pilih Jumlah Penumpang</option>
-                                                    @for ($dewasa = 1; $dewasa <= 5; $dewasa++)
-                                                        <option value="{{ $dewasa }}">{{ $dewasa }} Dewasa
-                                                        </option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4 d-flex align-items-end justify-content-end mt-md-0 mt-3">
-                                                <button type="submit" class="btn btn-success rounded-3">
-                                                    <i class="bi bi-search"></i>
-                                                    <span>Cari Tiket</span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

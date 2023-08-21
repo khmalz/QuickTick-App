@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Rute;
 use App\Models\Order;
 use App\Helpers\MixCaseULID;
@@ -16,7 +17,8 @@ class OrderController extends Controller
      */
     public function index(Request $request, Rute $rute)
     {
-        if ($rute->available_seats <= 0) return to_route('home');
+        $departureDateTime = Carbon::createFromFormat('H:i - d F Y', $rute->departure);
+        if ($departureDateTime < now() || $rute->available_seats <= 0) return to_route('home');
 
         $user = $request->user();
 

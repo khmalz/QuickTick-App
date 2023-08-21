@@ -73,8 +73,6 @@ class TiketController extends Controller
     {
         $order->load('rute.bus', 'passenger.user', 'passengerOrders', 'payment');
 
-        // return $order;
-
         return view('admin.ticket.detail', compact('order'));
     }
 
