@@ -39,7 +39,8 @@
                                 </small>
                             </div>
                             <div class="d-flex justify-content-center gap-4">
-                                <a href="{{ route('tiket.list') }}" class="btn btn-success btn-sm rounded">Lihat Tiket
+                                <a href="{{ route('tiket.show', $order->id) }}" class="btn btn-success btn-sm rounded">Lihat
+                                    Tiket
                                     Kamu</a>
                                 <a href="{{ route('home') }}" class="btn btn-primary btn-sm rounded">Kembali ke Home</a>
                             </div>

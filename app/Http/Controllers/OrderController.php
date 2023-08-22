@@ -60,7 +60,7 @@ class OrderController extends Controller
             ]);
         }
 
-        return to_route('payment.index', $order->id);
+        return to_route('payment.index', $order->id)->with('success', 'Successfully booking a ticket');
     }
 
     /**

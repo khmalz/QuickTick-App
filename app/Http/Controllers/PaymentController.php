@@ -115,6 +115,6 @@ class PaymentController extends Controller
             return to_route('payment.index', $order->id);
         }
 
-        return view('success-payment');
+        return view('success-payment', compact('order'));
     }
 }

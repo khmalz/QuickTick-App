@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main id="main" style="min-height: 70vh">
+    <main id="main" data-success="{{ session('success') }}" style="min-height: 70vh">
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
@@ -59,7 +59,8 @@
                                 </h2>
                                 <div class="entry-content">
                                     <div class="mb-3">
-                                        <p class="fw-bold fs-6" id="fullNameConfirm">{{ $order->passenger->user->name }}</p>
+                                        <p class="fw-bold fs-6" id="fullNameConfirm">{{ $order->passenger->user->name }}
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -142,3 +143,29 @@
 
     </main>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let successMessage = document.querySelector('main').dataset.success;
+            if (successMessage) {
+                showToast(successMessage, "#568ee8");
+            }
+        })
+
+        function showToast(message, background) {
+            Toastify({
+                text: message,
+                duration: 1800,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background,
+                },
+            }).showToast();
+        }
+    </script>
+@endpush

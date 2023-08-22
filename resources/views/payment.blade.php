@@ -180,6 +180,11 @@
                     return false;
                 }
             });
+
+            let successMessage = document.querySelector('main').dataset.success;
+            if (successMessage) {
+                showToast(successMessage, "#568ee8");
+            }
         });
 
         function validatePayment() {
@@ -236,11 +241,6 @@
                     background,
                 },
             }).showToast();
-        }
-
-        let successMessage = document.querySelector('main').dataset.success;
-        if (successMessage) {
-            showToast(successMessage, "#568ee8");
         }
     </script>
 @endpush

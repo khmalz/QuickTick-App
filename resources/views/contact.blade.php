@@ -98,15 +98,17 @@
             }).showToast();
         }
 
-        let successMessage = document.querySelector('main').dataset.mailSuccess;
-        let failureMessage = document.querySelector('main').dataset.mailFailure;
+        document.addEventListener('DOMContentLoaded', function() {
+            let successMessage = document.querySelector('main').dataset.mailSuccess;
+            let failureMessage = document.querySelector('main').dataset.mailFailure;
 
-        if (successMessage) {
-            showToast(successMessage, "#28a745");
-        }
+            if (successMessage) {
+                showToast(successMessage, "#28a745");
+            }
 
-        if (failureMessage) {
-            showToast(failureMessage, "#dc3545");
-        }
+            if (failureMessage) {
+                showToast(failureMessage, "#dc3545");
+            }
+        })
     </script>
 @endpush
