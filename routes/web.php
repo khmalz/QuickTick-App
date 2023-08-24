@@ -50,21 +50,24 @@ Route::middleware('role:Penumpang')->group(function () {
     Route::match(['patch', 'put'], '/profile-update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-Route::middleware('auth')->group(function () {
-    // Dashboard
+Route::middleware(['auth', 'role:Admin|Petugas'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
-    Route::resource('petugas', PetugasController::class)->parameters([
-        'petugas' => 'user'
-    ])->except('show');
-    Route::resource('company', CompanyController::class);
-    Route::resource('bus', BusController::class)->parameters([
-        'bus' => 'bus'
-    ]);
-    Route::resource('rute', RuteController::class);
+
     Route::get('ticket/unverified', [\App\Http\Controllers\Admin\TiketController::class, 'indexUnverified'])->name('ticket.unverified');
     Route::get('ticket/verified', [\App\Http\Controllers\Admin\TiketController::class, 'indexVerified'])->name('ticket.verified');
     Route::get('ticket/{order}', [\App\Http\Controllers\Admin\TiketController::class, 'show'])->name('ticket.show');
     Route::patch('ticket/{order}', [\App\Http\Controllers\Admin\TiketController::class, 'update'])->name('ticket.update');
+
+    Route::middleware('role:Admin')->group(function () {
+        Route::resource('petugas', PetugasController::class)->parameters([
+            'petugas' => 'user'
+        ])->except('show');
+        Route::resource('company', CompanyController::class);
+        Route::resource('bus', BusController::class)->parameters([
+            'bus' => 'bus'
+        ]);
+        Route::resource('rute', RuteController::class);
+    });
 });
 
 require __DIR__ . '/auth.php';
