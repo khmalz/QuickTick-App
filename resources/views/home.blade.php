@@ -46,7 +46,7 @@
 
                 <!-- Slide 1 -->
                 <div class="carousel-item active"
-                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-1.jpg') }});">
+                    style="background-image: url({{ asset('frontend/assets/img/slide/carousel1.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Welcome to <span>QuickTick</span></h2>
@@ -59,7 +59,7 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item"
-                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-2.jpg') }});">
+                    style="background-image: url({{ asset('frontend/assets/img/slide/carousel2.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Jelajahi Dunia dengan QuickTick!</h2>
@@ -72,7 +72,7 @@
 
                 <!-- Slide 3 -->
                 <div class="carousel-item"
-                    style="background-image: url({{ asset('frontend/assets/img/slide/slide-3.jpg') }});">
+                    style="background-image: url({{ asset('frontend/assets/img/slide/carousel3.jpg') }});">
                     <div class="carousel-container">
                         <div class="carousel-content animate__animated animate__fadeInUp">
                             <h2>Pengalaman Perjalanan Tanpa Batas dengan QuickTick!</h2>
