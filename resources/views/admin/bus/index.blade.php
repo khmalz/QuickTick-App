@@ -121,7 +121,25 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["excel", "pdf"],
+            "buttons": [
+                "excel",
+                {
+                    extend: 'pdf',
+                    customize: function(doc) {
+                        doc.content[1].table.body.forEach(function(row) {
+                            row.forEach(function(cell) {
+                                cell.alignment = 'center';
+                            });
+                            row.splice(-1, 1); // Menghapus kolom "Action"
+                        });
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');
+                        doc.content[0].text = "QuickTick Bus";
+                    },
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5] // Hanya kolom yang akan diexport
+                    }
+                }
+            ],
             "stateSave": true,
             "stateDuration": 60 * 5,
             "language": {
