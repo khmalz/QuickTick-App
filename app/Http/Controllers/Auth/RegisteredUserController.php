@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'gender' => ['required', 'string'],
-            'telephone' =>  ['required', 'numeric', 'regex:/^(\62|0*)[2-9]{1}[0-9]{5,20}$/']
+            'telephone' => ['required', 'numeric', 'regex:/^(62|08)[2-9][0-9]{5,20}$/']
         ], [
             'telephone.regex' => "The phone number must start with 62/0"
         ]);

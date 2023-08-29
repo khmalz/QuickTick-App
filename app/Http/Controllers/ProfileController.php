@@ -39,9 +39,9 @@ class ProfileController extends Controller
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'gender' => ['nullable', 'string'],
-            'telephone' =>  ['nullable', 'numeric', 'regex:/^(\62|0*)[2-9]{1}[0-9]{5,20}$/']
+            'telephone' => ['nullable', 'numeric', 'regex:/^(62|08)[2-9][0-9]{5,20}$/']
         ], [
-            'telephone.regex' => "The phone number must start with 62/0"
+            'telephone.regex' => "The phone number must start with 62/08"
         ]);
 
         if (!empty($data['password'])) {
