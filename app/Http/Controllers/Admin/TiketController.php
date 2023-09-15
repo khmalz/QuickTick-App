@@ -50,7 +50,6 @@ class TiketController extends Controller
         $orders = Order::with('rute', 'passenger.user')
             ->withCount('passengerOrders')
             ->whereStatus('verified')
-            ->byDeparture(now())
             ->when($asal ?? false, function ($query) use ($asal) {
                 $query->byAsal($asal);
             })
@@ -59,6 +58,8 @@ class TiketController extends Controller
             })
             ->when($departure ?? false, function ($query) use ($departure) {
                 $query->byDeparture($departure);
+            }, function ($query) {
+                $query->byDeparture(now());
             })
             ->get();
         $cities = City::all();
