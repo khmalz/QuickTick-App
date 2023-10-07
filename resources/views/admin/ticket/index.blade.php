@@ -79,7 +79,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="{{ route('ticket.unverified') }}" class="btn btn-secondary">Clear</a>
+                                            <a href="{{ request()->routeIs('ticket.unverified') ? route('ticket.unverified') : route('ticket.verified') }}"
+                                                class="btn btn-secondary">Clear</a>
                                             <button type="submit" class="btn btn-primary">Search</button>
                                         </div>
                                     </form>
@@ -132,7 +133,7 @@
                     </div>
                 @else
                     <div class="card-body text-center">
-                        <p>Data not found, search again!</p>
+                        <p>Search first or find the right one!</p>
                     </div>
                 @endif
                 <!-- /.card-body -->

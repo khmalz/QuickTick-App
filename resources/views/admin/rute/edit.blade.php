@@ -130,10 +130,15 @@
                                 <div class="form-group">
                                     <label>Date and time:</label>
                                     <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                        @php
+                                            $departureParts = explode(' - ', $rute->departure);
+                                            $newDate = date('Y-m-d H:i', strtotime($departureParts[1] . ' ' . $departureParts[0]));
+                                        @endphp
                                         <input type="text"
                                             class="form-control datetimepicker-input @error('departure') is-invalid @enderror"
-                                            name="departure" data-target="#reservationdatetime" min="{{ date('Y-m-d') }}"
-                                            value="{{ old('departure', $rute->departure) }}" />
+                                            name="departure" data-target="#reservationdatetime"
+                                            min="{{ date('Y-m-d 00:00') }}" id="departureInput"
+                                            data-old="{{ old('departure', $newDate) }}" />
                                         <div class="input-group-append" data-target="#reservationdatetime"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -217,14 +222,19 @@
             selectRuteAndSetSelected($('[name="asal"]'), '#ruteAwal');
             selectRuteAndSetSelected($('[name="tujuan"]'), '#ruteAkhir');
 
-            //Date and time picker
+            // Date and time picker
+            let minDate = new Date();
+            minDate.setHours(0, 0, 0, 0);
+
+            let oldDeparture = $('#departureInput').data('old');
             $('#reservationdatetime').datetimepicker({
                 theme: 'bootstrap4',
                 icons: {
                     time: 'far fa-clock'
                 },
-                minDate: new Date(),
-                format: 'YYYY-MM-DD HH:mm'
+                minDate,
+                format: 'YYYY-MM-DD HH:mm',
+                defaultDate: oldDeparture || null
             });
         })
     </script>
