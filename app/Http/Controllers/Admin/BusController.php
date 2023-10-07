@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\BusRequest;
 use App\Models\Bus;
 use App\Models\Company;
-use Illuminate\Http\Request;
-use App\Http\Requests\BusRequest;
-use App\Http\Controllers\Controller;
 
 class BusController extends Controller
 {
@@ -58,6 +57,7 @@ class BusController extends Controller
         $companies = Company::all();
 
         $bus->load('company');
+
         return view('admin.bus.edit', compact('bus', 'companies'));
     }
 

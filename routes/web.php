@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\Admin\BusController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\RuteController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\PetugasController;
+use App\Http\Controllers\Admin\RuteController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\TiketController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,14 +60,14 @@ Route::middleware(['auth', 'role:Admin|Petugas'])->group(function () {
 
     Route::middleware('role:Admin')->group(function () {
         Route::resource('petugas', PetugasController::class)->parameters([
-            'petugas' => 'user'
+            'petugas' => 'user',
         ])->except('show');
         Route::resource('company', CompanyController::class);
         Route::resource('bus', BusController::class)->parameters([
-            'bus' => 'bus'
+            'bus' => 'bus',
         ]);
         Route::resource('rute', RuteController::class);
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -4,24 +4,24 @@ namespace App\Helpers;
 
 class GenerateInitial
 {
-   /**
-    * Generate initals
-    */
-   public static function generate(array $arrays): array
-   {
-      $initials = [];
+    /**
+     * Generate initals
+     */
+    public static function generate(array $arrays): array
+    {
+        $initials = [];
 
-      foreach ($arrays as $array) {
-         $words = explode(' ', $array);
-         $initial = '';
+        foreach ($arrays as $array) {
+            $words = explode(' ', $array);
+            $initial = '';
 
-         foreach ($words as $word) {
-            $initial .= strtoupper($word[0]);
-         }
+            foreach ($words as $word) {
+                $initial .= strtoupper($word[0]);
+            }
 
-         $initials[] = $initial;
-      }
+            $initials[] = $initial;
+        }
 
-      return $initials;
-   }
+        return $initials;
+    }
 }

@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionSeeder extends Seeder
 {
@@ -24,7 +23,7 @@ class PermissionSeeder extends Seeder
             'verification_manage',
             'tiket_access',
             'tiket_manage',
-            'petugas_manage'
+            'petugas_manage',
         ];
 
         $petugasPermissions = [
@@ -39,11 +38,11 @@ class PermissionSeeder extends Seeder
             'payment_access',
         ];
 
-        $allPermissions =  array_unique(array_merge($adminPermissions, $petugasPermissions, $penumpangPermissions));
+        $allPermissions = array_unique(array_merge($adminPermissions, $petugasPermissions, $penumpangPermissions));
         foreach ($allPermissions as $permission) {
             Permission::insert([
                 'name' => $permission,
-                'guard_name' => 'web'
+                'guard_name' => 'web',
             ]);
         }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RuteRequest;
 use App\Models\Bus;
 use App\Models\City;
 use App\Models\Rute;
 use Illuminate\Http\Request;
-use App\Http\Requests\RuteRequest;
-use App\Http\Controllers\Controller;
 
 class RuteController extends Controller
 {

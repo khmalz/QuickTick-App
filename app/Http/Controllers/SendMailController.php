@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactMail;
-use Illuminate\Http\Request;
 use App\Http\Requests\MailRequest;
+use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 
 class SendMailController extends Controller
@@ -16,7 +15,7 @@ class SendMailController extends Controller
         $configUsername = config('mail.mailers.smtp.username');
         $configPassword = config('mail.mailers.smtp.password');
 
-        if (!$configUsername && !$configPassword) {
+        if (! $configUsername && ! $configPassword) {
             return back()->with('failure', 'Gagal mengirim pesan. Konfigurasi email tidak lengkap.');
         }
 

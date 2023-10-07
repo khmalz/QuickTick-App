@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
@@ -36,15 +36,15 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,'.$request->user()->id],
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'gender' => ['nullable', 'string'],
-            'telephone' => ['nullable', 'numeric', 'regex:/^(62|08)[2-9][0-9]{5,20}$/']
+            'telephone' => ['nullable', 'numeric', 'regex:/^(62|08)[2-9][0-9]{5,20}$/'],
         ], [
-            'telephone.regex' => "The phone number must start with 62/08"
+            'telephone.regex' => 'The phone number must start with 62/08',
         ]);
 
-        if (!empty($data['password'])) {
+        if (! empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);

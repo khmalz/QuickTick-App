@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rute;
 use App\Models\Order;
+use App\Models\Rute;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class TiketController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->asal) {
+        if (! $request->asal) {
             return redirect()->route('home');
         }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Rute;
-use App\Models\Order;
 use App\Helpers\MixCaseULID;
-use Illuminate\Http\Request;
+use App\Models\Order;
 use App\Models\PassengerOrder;
+use App\Models\Rute;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -18,7 +18,9 @@ class OrderController extends Controller
     public function index(Request $request, Rute $rute)
     {
         $departureDateTime = Carbon::createFromFormat('H:i - d F Y', $rute->departure);
-        if ($departureDateTime < now() || $rute->available_seats <= 0) return to_route('home');
+        if ($departureDateTime < now() || $rute->available_seats <= 0) {
+            return to_route('home');
+        }
 
         $user = $request->user();
 
@@ -56,7 +58,7 @@ class OrderController extends Controller
                 'kode' => MixCaseULID::generate(),
                 'passenger_name' => $data['nama'][$i],
                 'passenger_ktp' => $data['ktp'][$i],
-                'seat_code' => ++$passengerCount
+                'seat_code' => ++$passengerCount,
             ]);
         }
 

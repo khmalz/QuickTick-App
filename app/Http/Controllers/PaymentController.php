@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Card;
 use App\Models\Order;
-use App\Models\Wallet;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-use App\Models\VirtualAccount;
 use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
@@ -17,7 +14,9 @@ class PaymentController extends Controller
      */
     public function index(Order $order)
     {
-        if ($order->payment) return to_route('tiket.list');
+        if ($order->payment) {
+            return to_route('tiket.list');
+        }
 
         return view('payment', compact('order'));
     }
@@ -111,7 +110,7 @@ class PaymentController extends Controller
 
     public function success(Order $order)
     {
-        if (!$order->payment) {
+        if (! $order->payment) {
             return to_route('payment.index', $order->id);
         }
 

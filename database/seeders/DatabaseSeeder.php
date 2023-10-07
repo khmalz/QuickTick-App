@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CompanyBusSeeder::class,
             RuteSeeder::class,
             CityTerminalSeeder::class,
-            OrderSeeder::class
+            OrderSeeder::class,
         ]);
 
         $user = User::create([
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-            'remember_token' => Str::random(10)
+            'remember_token' => Str::random(10),
         ]);
 
         $user->assignRole('Admin');
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'petugas1@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-            'remember_token' => Str::random(10)
+            'remember_token' => Str::random(10),
         ]);
 
         $user->assignRole('Petugas');
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'petugas2@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-            'remember_token' => Str::random(10)
+            'remember_token' => Str::random(10),
         ]);
 
         $user->assignRole('Petugas');

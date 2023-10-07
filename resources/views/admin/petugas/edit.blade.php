@@ -58,7 +58,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <label for="inputPassword" class="form-label">Password (Optional)</label>
                                     <input type="password" id="inputPassword" name="password"
                                         class="form-control @error('password') is-invalid @enderror">
                                     @error('password')

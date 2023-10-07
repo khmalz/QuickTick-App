@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class TiketController extends Controller
 {
@@ -29,8 +29,6 @@ class TiketController extends Controller
             })
             ->when($departure ?? false, function ($query) use ($departure) {
                 $query->byDeparture($departure);
-            }, function ($query) {
-                $query->byDeparture(now());
             })
             ->get();
         $cities = City::all();

@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\GenerateInitial;
 use App\Models\Bus;
 use App\Models\Company;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use App\Helpers\GenerateInitial;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 
 class CompanyBusSeeder extends Seeder
 {
@@ -26,7 +25,7 @@ class CompanyBusSeeder extends Seeder
         ];
 
         foreach ($companies as $company) {
-            Company::create(["name" => $company]);
+            Company::create(['name' => $company]);
         }
 
         $busTypes = [
@@ -52,7 +51,7 @@ class CompanyBusSeeder extends Seeder
                 $uuid = (string) Str::uuid();
                 $numeric3 = substr(preg_replace('/[^0-9]/', '', $uuid), 0, 3);
 
-                $busCode = $companyInitial . $busTypeInitial . '-' . $numeric3;
+                $busCode = $companyInitial.$busTypeInitial.'-'.$numeric3;
 
                 $Buses[] = [
                     'company' => $companyIndex,
@@ -64,10 +63,10 @@ class CompanyBusSeeder extends Seeder
 
         foreach ($Buses as $bus) {
             Bus::create([
-                "company_id" => $bus["company"],
-                "kode" => $bus["kode"],
-                "name" => $bus["name"],
-                "seat" => 35
+                'company_id' => $bus['company'],
+                'kode' => $bus['kode'],
+                'name' => $bus['name'],
+                'seat' => 35,
             ]);
         }
     }

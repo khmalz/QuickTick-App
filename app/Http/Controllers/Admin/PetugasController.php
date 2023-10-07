@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 
 class PetugasController extends Controller
 {
@@ -74,7 +74,7 @@ class PetugasController extends Controller
             'password' => ['nullable', Rules\Password::defaults()],
         ]);
 
-        if (!empty($data['password'])) {
+        if (! empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);

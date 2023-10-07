@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rute;
-use App\Models\User;
+use App\Helpers\MixCaseULID;
 use App\Models\Order;
 use App\Models\Passenger;
-use App\Helpers\MixCaseULID;
 use App\Models\PassengerOrder;
+use App\Models\Rute;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class OrderSeeder extends Seeder
 {
@@ -29,7 +28,7 @@ class OrderSeeder extends Seeder
 
             $user->passenger()->create([
                 'telephone' => fake('id_ID')->phoneNumber(),
-                'gender' => rand(0, 1) ? "L" : "P",
+                'gender' => rand(0, 1) ? 'L' : 'P',
             ]);
         }
 
@@ -45,7 +44,7 @@ class OrderSeeder extends Seeder
             for ($i = 1; $i <= rand(1, 5); $i++) {
                 PassengerOrder::create([
                     'order_id' => $order->id,
-                    'kode' =>  MixCaseULID::generate(),
+                    'kode' => MixCaseULID::generate(),
                     'passenger_name' => fake('id_ID')->name(),
                     'passenger_ktp' => fake()->isbn10(),
                     'seat_code' => rand(1, 46),

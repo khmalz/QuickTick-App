@@ -27,7 +27,7 @@ class RuteRequest extends FormRequest
             'tujuan' => ['required', 'string', 'max:100'],
             'rute_awal' => ['required', 'string', 'max:100'],
             'rute_akhir' => ['required', 'string', 'max:100'],
-            'harga' => ['required', 'numeric', 'min:0'],
+            'harga' => ['required', 'min:0'],
             'departure' => ['required', 'string'],
         ];
     }

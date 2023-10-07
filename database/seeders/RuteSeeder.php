@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Bus;
 use App\Models\Rute;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RuteSeeder extends Seeder
 {
@@ -119,7 +118,7 @@ class RuteSeeder extends Seeder
                                 'tujuan' => $tujuan,
                                 'rute_akhir' => $ruteAkhir,
                                 'harga' => 2003000,
-                                'departure' => fake()->dateTimeBetween('now', '+2 week')
+                                'departure' => fake()->dateTimeBetween('now', '+2 week'),
                             ]);
                         }
                     }
