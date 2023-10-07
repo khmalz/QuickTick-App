@@ -60,7 +60,7 @@
                                             <li class="list-inline-item">
                                                 <img alt="{{ $company->name }}" class="table-avatar rounded-0 bg-white"
                                                     style="width: 7rem !important"
-                                                    src="{{ $company->logo !== 'placeholder' ? \Illuminate\Support\Facades\Storage::url($company->logo) : asset('admin/dist/img/placeholder.jpg') }}">
+                                                    src="{{ $company->logo !== 'placeholder' ? asset("images/$company->logo") : asset('admin/dist/img/placeholder.jpg') }}">
                                             </li>
                                         </ul>
                                     </td>

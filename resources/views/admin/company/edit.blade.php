@@ -65,8 +65,7 @@
                                         <img class="img-preview col-md-8 col-lg-4 d-none mt-3 rounded p-0" alt="empty">
                                     @else
                                         <img class="img-preview col-md-8 col-lg-4 d-block mt-3 rounded p-0"
-                                            alt="{{ $company->name }}"
-                                            src="{{ \Illuminate\Support\Facades\Storage::url($company->logo) }}">
+                                            alt="{{ $company->name }}" src="{{ asset("images/$company->logo") }}">
                                     @endif
                                 </div>
                             </div>

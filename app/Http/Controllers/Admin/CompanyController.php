@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Company;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRequest;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Company;
+use Illuminate\Support\Facades\File;
 
 class CompanyController extends Controller
 {
@@ -33,11 +32,11 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $image = $request->file('logo')->store('companies');
+        $image = $request->file('logo')->store('companies', ['disk' => 'asset']);
 
         Company::create([
             'name' => $request->name,
-            'logo' => $image
+            'logo' => $image,
         ]);
 
         return to_route('company.index')->with('success', 'Successfully created a new partner');
@@ -65,9 +64,9 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request, Company $company)
     {
         if ($request->has('logo')) {
-            Storage::delete($company->logo);
+            File::delete(public_path("images/$company->logo"));
 
-            $image = $request->file('logo')->store('companies');
+            $image = $request->file('logo')->store('companies', ['disk' => 'asset']);
         }
 
         $company->update([
@@ -83,7 +82,10 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        Storage::delete($company->logo);
+        if ($company->logo !== 'placeholder') {
+            File::delete(public_path("images/$company->logo"));
+        }
+
         $company->delete();
 
         return to_route('company.index')->with('success', 'Successfully deleted a partner');
