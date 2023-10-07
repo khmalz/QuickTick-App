@@ -62,10 +62,6 @@ class RuteSeeder extends Seeder
                 'Terminal Tirtonadi',
                 'Terminal Palur',
             ],
-            'Salatiga' => [
-                'Terminal Ledok',
-                'Terminal Argomulyo',
-            ],
             'Magelang' => [
                 'Terminal Tidar',
                 'Terminal Mertoyudan',
@@ -77,18 +73,6 @@ class RuteSeeder extends Seeder
             'Malang' => [
                 'Terminal Arjosari',
                 'Terminal Landungsari',
-            ],
-            'Sidoarjo' => [
-                'Terminal Porong',
-                'Terminal Gedangan',
-            ],
-            'Mojokerto' => [
-                'Terminal Tipes',
-                'Terminal Jetis',
-            ],
-            'Blitar' => [
-                'Terminal Blitar',
-                'Terminal Talun',
             ],
             'Bali' => [
                 'Terminal Ubung',
@@ -117,7 +101,7 @@ class RuteSeeder extends Seeder
                                 'rute_awal' => $ruteAwal,
                                 'tujuan' => $tujuan,
                                 'rute_akhir' => $ruteAkhir,
-                                'harga' => 2003000,
+                                'harga' => 200000,
                                 'departure' => fake()->dateTimeBetween('now', '+2 week'),
                             ]);
                         }
